@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialSahayak - Eligible Schemes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --primary-blue: #96C2DB;
+            --light-blue: #E5EDF1;
+            --dark-blue: #5A8DAA;
+            --accent-blue: #7AB0D1;
+            --white: #FFFFFF;
+            --dark-grey: #333333;
+            --light-grey: #F8F9FA;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--white);
+            color: var(--dark-grey);
+            line-height: 1.6;
+        }
+        
+        .govt-header {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
+            box-shadow: 0 4px 20px rgba(90, 141, 170, 0.2);
+        }
+        
+        .govt-footer {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .emblem-bg {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .btn-primary {
+            background-color: var(--dark-blue);
+            color: white;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(90, 141, 170, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(90, 141, 170, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: var(--white);
+            color: var(--dark-blue);
+            border: 2px solid var(--dark-blue);
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--light-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(90, 141, 170, 0.2);
+        }
+        
+        .card {
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(149, 157, 165, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--white);
+            border: 1px solid var(--light-blue);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(149, 157, 165, 0.2);
+        }
+        
+        .scheme-card {
+            border-left: 4px solid var(--accent-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .scheme-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 28px rgba(149, 157, 165, 0.2);
+        }
+        
+        .progress-bar {
+            transition: width 0.5s ease;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--dark-blue));
+        }
+        
+        .nav-link {
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--white);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .active-nav:after {
+            width: 100%;
+        }
+        
+        .language-option {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            border-radius: 8px;
+        }
+        
+        .language-option:hover {
+            border-color: var(--accent-blue);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(90, 141, 170, 0.2);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(90, 141, 170, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(90, 141, 170, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(90, 141, 170, 0);
+            }
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .rotate-in {
+            animation: rotateIn 0.7s ease-out;
+        }
+        
+        @keyframes rotateIn {
+            from { transform: rotateY(90deg); opacity: 0; }
+            to { transform: rotateY(0deg); opacity: 1; }
+        }
+        
+        .staggered-fade-in {
+            animation: fadeInUp 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .official-badge {
+            background: linear-gradient(135deg, var(--dark-blue), var(--accent-blue));
+            color: white;
+            font-weight: bold;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 8px rgba(90, 141, 170, 0.3);
+        }
+        
+        .info-chip {
+            background-color: var(--light-blue);
+            color: var(--dark-blue);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .info-chip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(90, 141, 170, 0.2);
+        }
+        
+        .info-chip i {
+            margin-right: 5px;
+            font-size: 0.8rem;
+        }
+        
+        .department-logo {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            transition: all 0.3s ease;
+        }
+        
+        .department-logo:hover {
+            transform: scale(1.1);
+        }
+        
+        .scheme-tag {
+            background-color: var(--light-blue);
+            color: var(--dark-blue);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .scheme-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(90, 141, 170, 0.2);
+        }
+        
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-15px);}
+            60% {transform: translateY(-7px);}
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--white) 100%);
+            border-radius: 0 0 40px 40px;
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+            color: white;
+            border-radius: 16px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 8px 16px rgba(90, 141, 170, 0.2);
+        }
+        
+        .testimonial-card {
+            border-top: 4px solid var(--accent-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(149, 157, 165, 0.2);
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            border-radius: 40px;
+            box-shadow: 0 12px 28px rgba(90, 141, 170, 0.3);
+        }
+        
+        .voice-modal {
+            box-shadow: 0 16px 40px rgba(90, 141, 170, 0.3);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .feedback-modal {
+            box-shadow: 0 16px 40px rgba(90, 141, 170, 0.3);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .question-number {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+            color: white;
+            border-radius: 12px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(90, 141, 170, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .department-logo {
+                height: 50px;
+            }
+            .hero-section {
+                border-radius: 0 0 30px 30px;
+            }
+            .cta-section {
+                border-radius: 30px;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-gray-50">
+    <!-- Language Selector Modal -->
+    <div id="languageModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 animate__animated animate__fadeInUp">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 text-center flex-1">Select Language / भाषा चुनें</h2>
+                <button onclick="closeLanguageModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <button onclick="setLanguage('en')" class="py-3 px-4 bg-blue-50 hover:bg-blue-100 rounded-lg text-blue-800 font-medium transition flex items-center justify-center language-option">
+                    <i class="fas fa-language mr-2"></i> English
+                </button>
+                <button onclick="setLanguage('hi')" class="py-3 px-4 bg-blue-50 hover:bg-blue-100 rounded-lg text-blue-800 font-medium transition flex items-center justify-center language-option">
+                    <i class="fas fa-language mr-2"></i> हिंदी
+                </button>
+                <button onclick="setLanguage('bn')" class="py-3 px-4 bg-blue-50 hover:bg-blue-100 rounded-lg text-blue-800 font-medium transition flex items-center justify-center language-option">
+                    <i class="fas fa-language mr-2"></i> বাংলা
+                </button>
+                <button onclick="setLanguage('ta')" class="py-3 px-4 bg-blue-50 hover:bg-blue-100 rounded-lg text-blue-800 font-medium transition flex items-center justify-center language-option">
+                    <i class="fas fa-language mr-2"></i> தமிழ்
+                </button>
+            </div>
+            <p class="text-center mt-6 text-gray-500 text-sm">You can change language anytime</p>
+        </div>
+    </div>
+
+    <!-- Government Header -->
+    <header class="govt-header text-white shadow-lg">
+        <div class="container mx-auto px-4">
+            <!-- Top Bar with Government Identity -->
+            <div class="py-3 flex flex-col md:flex-row justify-between items-center border-b border-blue-300">
+                <div class="flex items-center space-x-3 mb-3 md:mb-0">
+                    <div class="emblem-bg">
+                        <i class="fas fa-landmark text-2xl text-blue-800"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs uppercase tracking-wider">Government of India</div>
+                        <div class="font-bold text-sm md:text-base">Ministry of Social Justice and Empowerment</div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:flex items-center space-x-2">
+                        <i class="fas fa-phone-alt text-blue-200"></i>
+                        <span class="text-sm">Helpline: 1800-123-4567</span>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-2">
+                        <i class="fas fa-envelope text-blue-200"></i>
+                        <span class="text-sm">help@socialsahayak.gov.in</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Navigation -->
+            <nav class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-hands-helping text-3xl text-white"></i>
+                    <h1 class="text-2xl font-bold flex items-center font-['Space_Grotesk']">
+                        SocialSahayak
+                        <span class="official-badge ml-2">Official</span>
+                    </h1>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="dashboard.html" class="nav-link text-white font-medium">Home</a>
+                    <a href="dashboard.html#schemes" class="nav-link text-white font-medium">All Schemes</a>
+                    <a href="dashboard.html#about" class="nav-link text-white font-medium">About</a>
+                    <a href="dashboard.html#contact" class="nav-link text-white font-medium">Contact</a>
+                    <div class="flex items-center space-x-4">
+                        <button onclick="openLanguageModal()" class="flex items-center space-x-1 bg-white bg-opacity-20 hover:bg-opacity-30 px-3 py-1 rounded-full transition">
+                            <i class="fas fa-language"></i>
+                            <span id="currentLanguage">English</span>
+                        </button>
+                        <button onclick="toggleVoiceAssistant()" id="voiceAssistantBtn" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-2 rounded-full transition pulse">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </nav>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-blue-700 py-4 px-4">
+            <div class="flex flex-col space-y-4">
+                <a href="dashboard.html" class="text-white font-medium">Home</a>
+                <a href="dashboard.html#schemes" class="text-white font-medium">All Schemes</a>
+                <a href="dashboard.html#about" class="text-white font-medium">About</a>
+                <a href="dashboard.html#contact" class="text-white font-medium">Contact</a>
+                <div class="flex items-center space-x-3">
+                    <button onclick="openLanguageModal()" class="flex items-center space-x-1 bg-white bg-opacity-20 hover:bg-opacity-30 px-3 py-1 rounded-full transition">
+                        <i class="fas fa-language"></i>
+                        <span id="currentLanguageMobile">English</span>
+                    </button>
+                    <button onclick="toggleVoiceAssistant()" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-2 rounded-full transition">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Results Content -->
+    <div class="container mx-auto px-4 py-8 flex-grow">
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-8">
+            <button onclick="goBackToQuestionnaire()" class="flex items-center text-blue-700 hover:text-blue-900 transition">
+                <i class="fas fa-arrow-left mr-2"></i>
+                <span id="backResultsButtonText">Back to Questions</span>
+            </button>
+            <div class="flex items-center space-x-4">
+                <button onclick="openLanguageModal()" class="flex items-center space-x-1 bg-blue-100 hover:bg-blue-200 px-3 py-1 rounded-full transition text-blue-700">
+                    <i class="fas fa-language"></i>
+                    <span id="currentLanguageR">English</span>
+                </button>
+                <button onclick="toggleVoiceAssistant()" id="voiceAssistantBtnR" class="bg-blue-100 hover:bg-blue-200 p-2 rounded-full transition text-blue-700 pulse">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </header>
+        
+        <!-- Results Content -->
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-10">
+                <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 floating">
+                    <i class="fas fa-check text-green-600 text-4xl"></i>
+                </div>
+                <h2 id="resultsTitle" class="text-3xl font-bold text-gray-800 mb-2 font-['Space_Grotesk']">Here are your results!</h2>
+                <p id="resultsSubtitle" class="text-gray-600 max-w-2xl mx-auto">Based on your answers, you may be eligible for these government welfare schemes. Click on any scheme to view more details and application process.</p>
+            </div>
+            
+            <!-- Results Summary Card -->
+            <div class="card p-6 mb-8 bg-blue-50 border border-blue-100 staggered-fade-in">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                    <div class="mb-4 md:mb-0">
+                        <h3 class="font-bold text-lg text-blue-800 mb-1">Your Eligibility Summary</h3>
+                        <p class="text-blue-700">Based on your profile information</p>
+                    </div>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-white px-4 py-2 rounded-lg shadow-sm">
+                            <div class="text-sm text-gray-500">Age</div>
+                            <div class="font-bold" id="summaryAge">-</div>
+                        </div>
+                        <div class="bg-white px-4 py-2 rounded-lg shadow-sm">
+                            <div class="text-sm text-gray-500">Income</div>
+                            <div class="font-bold" id="summaryIncome">-</div>
+                        </div>
+                        <div class="bg-white px-4 py-2 rounded-lg shadow-sm">
+                            <div class="text-sm text-gray-500">Location</div>
+                            <div class="font-bold" id="summaryLocation">-</div>
+                        </div>
+                        <div class="bg-white px-4 py-2 rounded-lg shadow-sm">
+                            <div class="text-sm text-gray-500">Category</div>
+                            <div class="font-bold" id="summaryCategory">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Results Count -->
+            <div class="flex items-center justify-between mb-6 staggered-fade-in" style="animation-delay: 0.1s">
+                <h3 id="schemesFoundText" class="font-medium text-gray-700">5 schemes found</h3>
+                <div class="flex space-x-3">
+                    <button onclick="shareResults()" class="flex items-center space-x-1 bg-blue-100 hover:bg-blue-200 px-3 py-1 rounded-lg transition text-blue-700">
+                        <i class="fas fa-share-alt"></i>
+                        <span id="shareButtonText">Share</span>
+                    </button>
+                    <button onclick="saveResults()" class="flex items-center space-x-1 bg-blue-100 hover:bg-blue-200 px-3 py-1 rounded-lg transition text-blue-700">
+                        <i class="fas fa-save"></i>
+                        <span id="saveButtonText">Save</span>
+                    </button>
+                    <button onclick="printResults()" class="flex items-center space-x-1 bg-blue-100 hover:bg-blue-200 px-3 py-1 rounded-lg transition text-blue-700">
+                        <i class="fas fa-print"></i>
+                        <span id="printButtonText">Print</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Scheme Cards -->
+            <div id="schemesContainer" class="space-y-6">
+                <!-- Scheme cards will be dynamically inserted here -->
+            </div>
+            
+            <!-- No Results State -->
+            <div id="noResults" class="hidden text-center py-12">
+                <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-search text-gray-500 text-3xl"></i>
+                </div>
+                <h3 id="noResultsTitle" class="text-xl font-medium text-gray-800 mb-2">No schemes found</h3>
+                <p id="noResultsText" class="text-gray-600 max-w-md mx-auto mb-6">Based on your answers, we couldn't find any matching schemes at this time. You may check again later or browse all schemes.</p>
+                <div class="flex justify-center space-x-4">
+                    <button onclick="restartQuestionnaire()" class="btn-primary font-medium py-2 px-6 rounded-lg transition inline-flex items-center">
+                        <span id="retryButtonText">Try Again</span>
+                        <i class="fas fa-redo ml-2"></i>
+                    </button>
+                    <a href="dashboard.html#schemes" class="btn-secondary font-medium py-2 px-6 rounded-lg transition inline-flex items-center">
+                        <span>Browse All Schemes</span>
+                        <i class="fas fa-list-ul ml-2"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Feedback Section -->
+            <div class="card p-6 mt-10 staggered-fade-in" style="animation-delay: 0.3s">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">Was this helpful?</h3>
+                <p class="text-gray-600 mb-4">Your feedback helps us improve the service for other citizens.</p>
+                <div class="flex space-x-4">
+                    <button onclick="submitFeedback('yes')" class="bg-green-100 hover:bg-green-200 text-green-800 font-medium py-2 px-4 rounded-lg transition flex items-center">
+                        <i class="fas fa-thumbs-up mr-2"></i>
+                        <span>Yes</span>
+                    </button>
+                    <button onclick="submitFeedback('no')" class="bg-red-100 hover:bg-red-200 text-red-800 font-medium py-2 px-4 rounded-lg transition flex items-center">
+                        <i class="fas fa-thumbs-down mr-2"></i>
+                        <span>No</span>
+                    </button>
+                    <button onclick="showFeedbackForm()" class="bg-blue-100 hover:bg-blue-200 text-blue-800 font-medium py-2 px-4 rounded-lg transition flex items-center">
+                        <i class="fas fa-comment-alt mr-2"></i>
+                        <span>Suggest Improvement</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Voice Assistant Modal -->
+    <div id="voiceModal" class="fixed bottom-6 right-6 hidden">
+        <div class="voice-modal bg-white rounded-xl overflow-hidden w-80 animate__animated animate__fadeInUp">
+            <div class="bg-blue-700 p-4 text-white flex justify-between items-center">
+                <h3 id="voiceModalTitle" class="font-medium">Voice Assistant</h3>
+                <button onclick="toggleVoiceAssistant()" class="text-white hover:text-blue-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-4">
+                <div id="voiceStatus" class="text-center py-4">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-microphone text-blue-600 text-xl"></i>
+                    </div>
+                    <p id="voiceStatusText" class="text-gray-600">Click the microphone to start speaking</p>
+                </div>
+                <button id="voiceButton" onclick="toggleVoiceRecognition()" class="w-full btn-primary py-3 rounded-lg transition flex items-center justify-center">
+                    <i class="fas fa-microphone mr-2"></i>
+                    <span id="voiceButtonText">Start Speaking</span>
+                </button>
+                <p class="text-xs text-gray-500 mt-3 text-center">Currently supports English and Hindi</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Form Modal -->
+    <div id="feedbackModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="feedback-modal bg-white rounded-xl p-6 max-w-md w-full mx-4 animate__animated animate__fadeInUp">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800">Share Your Feedback</h3>
+                <button onclick="closeFeedbackModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="feedbackForm">
+                <div class="mb-4">
+                    <label for="feedbackMessage" class="block text-gray-700 mb-2">Your Suggestions</label>
+                    <textarea id="feedbackMessage" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="How can we improve your experience?"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="feedbackContact" class="block text-gray-700 mb-2">Contact Info (Optional)</label>
+                    <input type="text" id="feedbackContact" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Email or phone number">
+                </div>
+                <button type="submit" class="w-full btn-primary py-2 px-4 rounded-lg transition">
+                    Submit Feedback
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Government Footer -->
+    <footer class="govt-footer text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-hands-helping text-2xl text-white"></i>
+                        <h2 class="text-xl font-bold font-['Space_Grotesk']">SocialSahayak</h2>
+                    </div>
+                    <p id="footerTagline" class="text-blue-200 mb-4">Bridging citizens with welfare schemes</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-blue-200 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-blue-200 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-blue-200 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-blue-200 hover:text-white transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="dashboard.html" class="text-blue-200 hover:text-white transition">Home</a></li>
+                        <li><a href="dashboard.html#schemes" class="text-blue-200 hover:text-white transition">All Schemes</a></li>
+                        <li><a href="questions.html" class="text-blue-200 hover:text-white transition">Eligibility Check</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition">Application Status</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Departments</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-blue-200 hover:text-white transition">Ministry of Social Justice</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition">Ministry of Rural Development</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition">Ministry of Women & Child</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition">Ministry of Health</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2 text-blue-200"></i>
+                            <span class="text-blue-200">Ministry of Social Justice and Empowerment, Shastri Bhawan, New Delhi</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-2 text-blue-200"></i>
+                            <span class="text-blue-200">Helpline: 1800-123-4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-blue-200"></i>
+                            <span class="text-blue-200">help@socialsahayak.gov.in</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-blue-500 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p id="copyright" class="text-blue-200 text-sm mb-4 md:mb-0">© 2023 SocialSahayak, Government of India. All rights reserved.</p>
+                <div class="flex space-x-4">
+                    <a href="#" id="privacyLink" class="text-blue-200 hover:text-white text-sm transition">Privacy Policy</a>
+                    <a href="#" id="termsLink" class="text-blue-200 hover:text-white text-sm transition">Terms of Service</a>
+                    <a href="#" id="contactLink" class="text-blue-200 hover:text-white text-sm transition">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                currentLanguage: "English",
+                backResultsButtonText: "Back to Questions",
+                resultsTitle: "Here are your results!",
+                resultsSubtitle: "Based on your answers, you may be eligible for these government welfare schemes. Click on any scheme to view more details and application process.",
+                schemesFoundText: "5 schemes found",
+                shareButtonText: "Share",
+                saveButtonText: "Save",
+                printButtonText: "Print",
+                noResultsTitle: "No schemes found",
+                noResultsText: "Based on your answers, we couldn't find any matching schemes at this time. You may check again later or browse all schemes.",
+                retryButtonText: "Try Again",
+                viewDetails: "View Details",
+                benefits: "Benefits",
+                documentsRequired: "Documents Required",
+                applyNow: "Apply Now",
+                eligible: "Eligible",
+                shareNotSupported: "Sharing is not supported in your browser. You can copy the URL manually.",
+                resultsSaved: "Your results have been saved! You can access them anytime from your profile.",
+                feedbackThanks: "Thank you for your feedback! We're glad we could help.",
+                feedbackSubmitted: "Thank you for your feedback! We appreciate your input.",
+                feedbackRequired: "Please enter your feedback before submitting.",
+                listening: "Listening...",
+                voiceError: "Error occurred in recognition: ",
+                voiceRegistered: "Registered:",
+                voiceNotUnderstood: "Sorry, I didn't understand:",
+                voiceModalTitle: "Voice Assistant",
+                voiceStatusText: "Click the microphone to start speaking",
+                voiceButtonText: "Start Speaking",
+                footerTagline: "Bridging citizens with welfare schemes",
+                copyright: "© 2023 SocialSahayak, Government of India. All rights reserved.",
+                privacyLink: "Privacy Policy",
+                termsLink: "Terms of Service",
+                contactLink: "Contact Us"
+            },
+            hi: {
+                currentLanguage: "हिंदी",
+                backResultsButtonText: "प्रश्नों पर वापस जाएं",
+                resultsTitle: "आपके परिणाम यहां हैं!",
+                resultsSubtitle: "आपके उत्तरों के आधार पर, आप इन सरकारी कल्याणकारी योजनाओं के लिए पात्र हो सकते हैं। अधिक विवरण और आवेदन प्रक्रिया देखने के लिए किसी भी योजना पर क्लिक करें।",
+                schemesFoundText: "5 योजनाएं मिलीं",
+                shareButtonText: "साझा करें",
+                saveButtonText: "सहेजें",
+                printButtonText: "प्रिंट करें",
+                noResultsTitle: "कोई योजना नहीं मिली",
+                noResultsText: "आपके उत्तरों के आधार पर, हमें इस समय कोई मिलान योजना नहीं मिली। आप बाद में फिर से जांच सकते हैं या सभी योजनाओं को ब्राउज़ कर सकते हैं।",
+                retryButtonText: "पुनः प्रयास करें",
+                viewDetails: "विवरण देखें",
+                benefits: "लाभ",
+                documentsRequired: "आवश्यक दस्तावेज",
+                applyNow: "अभी आवेदन करें",
+                eligible: "पात्र",
+                shareNotSupported: "आपके ब्राउज़र में साझा करना समर्थित नहीं है। आप URL को मैन्युअल रूप से कॉपी कर सकते हैं।",
+                resultsSaved: "आपके परिणाम सहेजे गए हैं! आप उन्हें कभी भी अपने प्रोफाइल से एक्सेस कर सकते हैं।",
+                feedbackThanks: "आपके फीडबैक के लिए धन्यवाद! हमें खुशी है कि हम मदद कर पाए।",
+                feedbackSubmitted: "आपके फीडबैक के लिए धन्यवाद! हम आपके इनपुट की सराहना करते हैं।",
+                feedbackRequired: "सबमिट करने से पहले कृपया अपना फीडबैक दर्ज करें।",
+                listening: "सुन रहा हूँ...",
+                voiceError: "पहचान में त्रुटि हुई: ",
+                voiceRegistered: "पंजीकृत:",
+                voiceNotUnderstood: "क्षमा करें, मैं समझ नहीं पाया:",
+                voiceModalTitle: "वॉयस सहायक",
+                voiceStatusText: "बोलना शुरू करने के लिए माइक्रोफोन पर क्लिक करें",
+                voiceButtonText: "बोलना शुरू करें",
+                footerTagline: "नागरिकों को कल्याणकारी योजनाओं से जोड़ना",
+                copyright: "© 2023 सोशलसहायक, भारत सरकार। सर्वाधिकार सुरक्षित।",
+                privacyLink: "गोपनीयता नीति",
+                termsLink: "सेवा की शर्तें",
+                contactLink: "संपर्क करें"
+            },
+            bn: {
+                currentLanguage: "বাংলা",
+                backResultsButtonText: "প্রশ্নে ফিরে যান",
+                resultsTitle: "এখানে আপনার ফলাফল আছে!",
+                resultsSubtitle: "আপনার উত্তরের ভিত্তিতে, আপনি এই সরকারি কল্যাণমূলক প্রকল্পগুলির জন্য যোগ্য হতে পারেন। আরও বিশদ এবং আবেদন প্রক্রিয়া দেখতে যে কোনও প্রকল্পে ক্লিক করুন।",
+                schemesFoundText: "5 টি প্রকল্প পাওয়া গেছে",
+                shareButtonText: "শেয়ার করুন",
+                saveButtonText: "সংরক্ষণ করুন",
+                printButtonText: "প্রিন্ট করুন",
+                noResultsTitle: "কোনো প্রকল্প পাওয়া যায়নি",
+                noResultsText: "আপনার উত্তরের ভিত্তিতে, আমরা এই মুহূর্তে কোনো মিল প্রকল্প খুঁজে পাইনি। আপনি পরে আবার চেক করতে পারেন বা সমস্ত প্রকল্প ব্রাউজ করতে পারেন।",
+                retryButtonText: "আবার চেষ্টা করুন",
+                viewDetails: "বিস্তারিত দেখুন",
+                benefits: "সুবিধা",
+                documentsRequired: "প্রয়োজনীয় নথি",
+                applyNow: "এখনই আবেদন করুন",
+                eligible: "যোগ্য",
+                shareNotSupported: "আপনার ব্রাউজারে শেয়ারিং সমর্থিত নয়। আপনি ম্যানুয়ালি URL কপি করতে পারেন।",
+                resultsSaved: "আপনার ফলাফল সংরক্ষণ করা হয়েছে! আপনি যেকোনো সময় আপনার প্রোফাইল থেকে এটি অ্যাক্সেস করতে পারেন।",
+                feedbackThanks: "আপনার মতামতের জন্য ধন্যবাদ! আমরা সাহায্য করতে পেরে খুশি।",
+                feedbackSubmitted: "আপনার মতামতের জন্য ধন্যবাদ! আমরা আপনার ইনপুট প্রশংসা করি।",
+                feedbackRequired: "সাবমিট করার আগে দয়া করে আপনার মতামত লিখুন।",
+                listening: "শুনছি...",
+                voiceError: "স্বীকৃতিতে ত্রুটি হয়েছে: ",
+                voiceRegistered: "নিবন্ধিত:",
+                voiceNotUnderstood: "দুঃখিত, আমি বুঝতে পারিনি:",
+                voiceModalTitle: "ভয়েস সহকারী",
+                voiceStatusText: "কথা বলতে শুরু করতে মাইক্রোফোনে ক্লিক করুন",
+                voiceButtonText: "কথা বলা শুরু করুন",
+                footerTagline: "নাগরিকদের কল্যাণমূলক প্রকল্পের সাথে সংযোগ স্থাপন",
+                copyright: "© ২০২৩ সোশালসহায়ক, ভারত সরকার। সর্বস্বত্ব সংরক্ষিত।",
+                privacyLink: "গোপনীয়তা নীতি",
+                termsLink: "সেবা শর্তাবলী",
+                contactLink: "যোগাযোগ করুন"
+            },
+            ta: {
+                currentLanguage: "தமிழ்",
+                backResultsButtonText: "கேள்விகளுக்கு திரும்பு",
+                resultsTitle: "உங்கள் முடிவுகள் இங்கே!",
+                resultsSubtitle: "உங்கள் பதில்களின் அடிப்படையில், இந்த அரசு நலத்திட்டங்களுக்கு நீங்கள் தகுதியானவராக இருக்கலாம். மேலும் விவரங்கள் மற்றும் விண்ணப்ப செயல்முறையைக் காண எந்தத் திட்டத்தையும் கிளிக் செய்யவும்.",
+                schemesFoundText: "5 திட்டங்கள் கிடைத்தன",
+                shareButtonText: "பகிர்",
+                saveButtonText: "சேமி",
+                printButtonText: "அச்சிடு",
+                noResultsTitle: "திட்டங்கள் எதுவும் கிடைக்கவில்லை",
+                noResultsText: "உங்கள் பதில்களின் அடிப்படையில், இந்த நேரத்தில் பொருந்தக்கூடிய திட்டங்கள் எதுவும் கிடைக்கவில்லை. நீங்கள் பின்னர் மீண்டும் சரிபார்க்கலாம் அல்லது அனைத்து திட்டங்களையும் உலாவலாம்.",
+                retryButtonText: "மீண்டும் முயற்சிக்கவும்",
+                viewDetails: "விவரங்களைக் காண்க",
+                benefits: "நன்மைகள்",
+                documentsRequired: "தேவையான ஆவணங்கள்",
+                applyNow: "இப்போதே விண்ணப்பிக்கவும்",
+                eligible: "தகுதியானவர்",
+                shareNotSupported: "உங்கள் உலாவியில் பகிர்வு ஆதரிக்கப்படவில்லை. நீங்கள் URL ஐ கைமுறையாக நகலெடுக்கலாம்.",
+                resultsSaved: "உங்கள் முடிவுகள் சேமிக்கப்பட்டுள்ளன! உங்கள் சுயவிவரத்திலிருந்து எப்போது வேண்டுமானாலும் அணுகலாம்.",
+                feedbackThanks: "உங்கள் கருத்துக்கு நன்றி! நாங்கள் உதவ முடிந்ததில் மகிழ்ச்சி அடைகிறோம்.",
+                feedbackSubmitted: "உங்கள் கருத்துக்கு நன்றி! உங்கள் உள்ளீட்டை நாங்கள் பாராட்டுகிறோம்.",
+                feedbackRequired: "சமர்ப்பிக்கும் முன் தயவுசெய்து உங்கள் கருத்தை உள்ளிடவும்.",
+                listening: "கேட்கிறது...",
+                voiceError: "அங்கீகரிப்பில் பிழை ஏற்பட்டது: ",
+                voiceRegistered: "பதிவு செய்யப்பட்டது:",
+                voiceNotUnderstood: "மன்னிக்கவும், எனக்கு புரியவில்லை:",
+                voiceModalTitle: "குரல் உதவியாளர்",
+                voiceStatusText: "பேசத் தொடங்க மைக்ரோஃபோனைக் கிளிக் செய்க",
+                voiceButtonText: "பேசத் தொடங்கு",
+                footerTagline: "குடிமக்களை நலத்திட்டங்களுடன் இணைத்தல்",
+                copyright: "© 2023 சோஷல்சகாயக், இந்திய அரசு. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.",
+                privacyLink: "தனியுரிமைக் கொள்கை",
+                termsLink: "சேவை விதிமுறைகள்",
+                contactLink: "எங்களைத் தொடர்பு கொள்ளவும்"
+            }
+        };
+
+        // Welfare schemes data
+        const schemes = [
+            {
+                id: "pmay",
+                name: {
+                    en: "Pradhan Mantri Awas Yojana (PMAY)",
+                    hi: "प्रधानमंत्री आवास योजना (पीएमएवाई)",
+                    bn: "প্রধানমন্ত্রী আবাস যোজনা (PMAY)",
+                    ta: "பிரதம மந்திரி ஆவாஸ் யோஜனா (PMAY)"
+                },
+                description: {
+                    en: "Housing for All by 2022 mission provides financial assistance to eligible beneficiaries.",
+                    hi: "2022 तक सभी के लिए आवास मिशन योग्य लाभार्थियों को वित्तीय सहायता प्रदान करता है।",
+                    bn: "২০২২ সালের মধ্যে সকলের জন্য আবাসন মিশন যোগ্য সুবিধাভোগীদের আর্থিক সহায়তা প্রদান করে।",
+                    ta: "2022க்குள் அனைவருக்கும் வீடு திட்டம் தகுதியான பயனாளிகளுக்கு நிதி உதவி வழங்குகிறது."
+                },
+                benefits: {
+                    en: [
+                        "₹2.5 lakh assistance for house construction",
+                        "Interest subsidy on home loans",
+                        "Priority for women and disabled"
+                    ],
+                    hi: [
+                        "घर निर्माण के लिए ₹2.5 लाख सहायता",
+                        "गृह ऋण पर ब्याज सब्सिडी",
+                        "महिलाओं और विकलांगों को प्राथमिकता"
+                    ],
+                    bn: [
+                        "বাড়ি নির্মাণের জন্য ₹2.5 লাখ সহায়তা",
+                        "বাড়ির ঋণের উপর সুদ ভর্তুকি",
+                        "মহিলা এবং প্রতিবন্ধীদের জন্য অগ্রাধিকার"
+                    ],
+                    ta: [
+                        "வீடு கட்டுவதற்கு ₹2.5 லட்சம் உதவி",
+                        "வீட்டுக் கடன்களுக்கு வட்டி மானியம்",
+                        "பெண்கள் மற்றும் மாற்றுத்திறனாளிகளுக்கு முன்னுரிமை"
+                    ]
+                },
+                documents: {
+                    en: [
+                        "Aadhaar Card",
+                        "Income Certificate",
+                        "Bank Account Details",
+                        "Address Proof"
+                    ],
+                    hi: [
+                        "आधार कार्ड",
+                        "आय प्रमाण पत्र",
+                        "बैंक खाता विवरण",
+                        "पता प्रमाण"
+                    ],
+                    bn: [
+                        "আধার কার্ড",
+                        "আয়ের শংসাপত্র",
+                        "ব্যাংক অ্যাকাউন্টের বিবরণ",
+                        "ঠিকানা প্রমাণ"
+                    ],
+                    ta: [
+                        "ஆதார் அட்டை",
+                        "வருமான சான்றிதழ்",
+                        "வங்கி கணக்கு விவரங்கள்",
+                        "முகவரி சான்று"
+                    ]
+                },
+                applyLink: "https://pmaymis.gov.in/",
+                eligibility: {
+                    age: ">=18",
+                    income: ["lt1", "1to3", "3to5"],
+                    caste: ["sc", "st", "obc", "general"],
+                    state: ["andhra", "bihar", "delhi", "gujarat", "karnataka", "kerala", "maharashtra", "tamilnadu", "up", "westbengal"]
+                },
+                tags: {
+                    en: ["Financial Assistance", "Housing", "Interest Subsidy"],
+                    hi: ["वित्तीय सहायता", "आवास", "ब्याज सब्सिडी"],
+                    bn: ["আর্থিক সহায়তা", "আবাসন", "সুদ ভর্তুকি"],
+                    ta: ["நிதி உதவி", "வீடமைப்பு", "வட்டி மானியம்"]
+                },
+                ministry: {
+                    en: "Ministry of Housing",
+                    hi: "आवास मंत्रालय",
+                    bn: "আবাসন মন্ত্রণালয়",
+                    ta: "வீடமைப்பு அமைச்சகம்"
+                }
+            },
+            {
+                id: "pmkisan",
+                name: {
+                    en: "PM Kisan Samman Nidhi",
+                    hi: "पीएम किसान सम्मान निधि",
+                    bn: "পিএম কিষাণ সম্মান নিধি",
+                    ta: "பிஎம் கிசான் சம்மான் நிதி"
+                },
+                description: {
+                    en: "Provides income support to all landholding farmer families.",
+                    hi: "सभी भूमिधारक किसान परिवारों को आय सहायता प्रदान करता है।",
+                    bn: "সমস্ত জমিধারী কৃষক পরিবারকে আয় সহায়তা প্রদান করে।",
+                    ta: "அனைத்து நில உரிமையாளர் விவசாயி குடும்பங்களுக்கு வருமான ஆதரவு வழங்குகிறது."
+                },
+                benefits: {
+                    en: [
+                        "₹6,000 per year in 3 equal installments",
+                        "Direct benefit transfer to bank accounts",
+                        "No middlemen involved"
+                    ],
+                    hi: [
+                        "प्रति वर्ष 3 समान किस्तों में ₹6,000",
+                        "बैंक खातों में सीधा लाभ हस्तांतरण",
+                        "कोई बिचौलिए शामिल नहीं"
+                    ],
+                    bn: [
+                        "প্রতি বছর 3 সমান কিস্তিতে ₹6,000",
+                        "ব্যাংক অ্যাকাউন্টে সরাসরি সুবিধা স্থানান্তর",
+                        "কোনো মধ্যস্থতাকারী জড়িত নয়"
+                    ],
+                    ta: [
+                        "ஆண்டுக்கு 3 சம தவணைகளில் ₹6,000",
+                        "வங்கிக் கணக்குகளுக்கு நேரடி நன்மை பரிமாற்றம்",
+                        "இடைத்தரகர்கள் ஈடுபடவில்லை"
+                    ]
+                },
+                documents: {
+                    en: [
+                        "Aadhaar Card",
+                        "Land ownership documents",
+                        "Bank Account Details",
+                        "Farmer ID"
+                    ],
+                    hi: [
+                        "आधार कार्ड",
+                        "भूमि स्वामित्व दस्तावेज",
+                        "बैंक खाता विवरण",
+                        "किसान आईडी"
+                    ],
+                    bn: [
+                        "আধার কার্ড",
+                        "জমির মালিকানা নথি",
+                        "ব্যাংক অ্যাকাউন্টের বিবরণ",
+                        "কৃষক আইডি"
+                    ],
+                    ta: [
+                        "ஆதார் அட்டை",
+                        "நில உரிமை ஆவணங்கள்",
+                        "வங்கி கணக்கு விவரங்கள்",
+                        "விவசாயி அடையாளம்"
+                    ]
+                },
+                applyLink: "https://pmkisan.gov.in/",
+                eligibility: {
+                    income: ["lt1", "1to3"],
+                    state: ["andhra", "bihar", "delhi", "gujarat", "karnataka", "kerala", "maharashtra", "tamilnadu", "up", "westbengal"]
+                },
+                tags: {
+                    en: ["Farmers", "Direct Benefit", "Yearly Support"],
+                    hi: ["किसान", "प्रत्यक्ष लाभ", "वार्षिक समर्थन"],
+                    bn: ["কৃষক", "সরাসরি সুবিধা", "বার্ষিক সহায়তা"],
+                    ta: ["விவசாயிகள்", "நேரடி நன்மை", "ஆண்டுத் துணை"]
+                },
+                ministry: {
+                    en: "Ministry of Agriculture",
+                    hi: "कृषि मंत्रालय",
+                    bn: "কৃষি মন্ত্রণালয়",
+                    ta: "விவசாய அமைச்சகம்"
+                }
+            },
+            {
+                id: "aayushman",
+                name: {
+                    en: "Ayushman Bharat Yojana",
+                    hi: "आयुष्मान भारत योजना",
+                    bn: "আয়ুষ্মান ভারত যোজনা",
+                    ta: "ஆயுஷ்மான் பாரத் யோஜனா"
+                },
+                description: {
+                    en: "Provides health insurance coverage of up to ₹5 lakh per family per year.",
+                    hi: "प्रति परिवार प्रति वर्ष ₹5 लाख तक का स्वास्थ्य बीमा कवर प्रदान करता है।",
+                    bn: "প্রতি পরিবারে প্রতি বছর ₹5 লাখ পর্যন্ত স্বাস্থ্য বীমা কভারেজ প্রদান করে।",
+                    ta: "ஒரு குடும்பத்திற்கு ஆண்டுக்கு ₹5 லட்சம் வரை உள்ள சுகாதார காப்பீட்டை வழங்குகிறது."
+                },
+                benefits: {
+                    en: [
+                        "Health insurance cover of ₹5 lakh per family per year",
+                        "Covers secondary and tertiary hospitalization",
+                        "Cashless treatment at empaneled hospitals"
+                    ],
+                    hi: [
+                        "प्रति परिवार प्रति वर्ष ₹5 लाख का स्वास्थ्य बीमा कवर",
+                        "माध्यमिक और तृतीयक अस्पताल में भर्ती को कवर करता है",
+                        "पैनलबद्ध अस्पतालों में नकद रहित उपचार"
+                    ],
+                    bn: [
+                        "প্রতি পরিবারে প্রতি বছর ₹5 লাখ স্বাস্থ্য বীমা কভার",
+                        "সেকেন্ডারি এবং টার্শিয়ারি হাসপাতালে ভর্তিকে কভার করে",
+                        "প্যানেলভুক্ত হাসপাতালে নগদবিহীন চিকিৎসা"
+                    ],
+                    ta: [
+                        "ஒரு குடும்பத்திற்கு ஆண்டுக்கு ₹5 லட்சம் சுகாதார காப்பீடு",
+                        "இரண்டாம் நிலை மற்றும் மூன்றாம் நிலை மருத்துவமனை அனுமதியை உள்ளடக்கியது",
+                        "பட்டியலிடப்பட்ட மருத்துவமனைகளில் பணமில்லா சிகிச்சை"
+                    ]
+                },
+                documents: {
+                    en: [
+                        "Aadhaar Card",
+                        "Income Certificate",
+                        "Ration Card",
+                        "Caste Certificate (if applicable)"
+                    ],
+                    hi: [
+                        "आधार कार्ड",
+                        "आय प्रमाण पत्र",
+                        "राशन कार्ड",
+                        "जाति प्रमाण पत्र (यदि लागू हो)"
+                    ],
+                    bn: [
+                        "আধার কার্ড",
+                        "আয়ের শংসাপত্র",
+                        "রেশন কার্ড",
+                        "জাতি শংসাপত্র (প্রযোজ্য ক্ষেত্রে)"
+                    ],
+                    ta: [
+                        "ஆதார் அட்டை",
+                        "வருமான சான்றிதழ்",
+                        "ரேஷன் கார்டு",
+                        "சாதி சான்றிதழ் (தேவைப்பட்டால்)"
+                    ]
+                },
+                applyLink: "https://pmjay.gov.in/",
+                eligibility: {
+                    income: ["lt1", "1to3"],
+                    caste: ["sc", "st", "obc"]
+                },
+                tags: {
+                    en: ["Health Insurance", "Family Coverage", "Cashless Treatment"],
+                    hi: ["स्वास्थ्य बीमा", "परिवार कवर", "नकद रहित उपचार"],
+                    bn: ["স্বাস্থ্য বীমা", "পরিবার কভারেজ", "নগদবিহীন চিকিৎসা"],
+                    ta: ["சுகாதார காப்பீடு", "குடும்ப கவரேஜ்", "பணமில்லா சிகிச்சை"]
+                },
+                ministry: {
+                    en: "Ministry of Health",
+                    hi: "स्वास्थ्य मंत्रालय",
+                    bn: "স্বাস্থ্য মন্ত্রণালয়",
+                    ta: "சுகாதார அமைச்சகம்"
+                }
+            },
+            {
+                id: "ujwala",
+                name: {
+                    en: "Pradhan Mantri Ujjwala Yojana",
+                    hi: "प्रधानमंत्री उज्ज्वला योजना",
+                    bn: "প্রধানমন্ত্রী উজ্জ্বলা যোজনা",
+                    ta: "பிரதம மந்திரி உஜ்வாலா யோஜனா"
+                },
+                description: {
+                    en: "Provides free LPG connections to women from below poverty line families.",
+                    hi: "गरीबी रेखा से नीचे के परिवारों की महिलाओं को मुफ्त एलपीजी कनेक्शन प्रदान करता है।",
+                    bn: "দারিদ্র্যসীমার নিচের পরিবারের মহিলাদের বিনামূল্যে এলপিজি সংযোগ প্রদান করে।",
+                    ta: "வறுமைக் கோட்டுக்குக் கீழே உள்ள குடும்பங்களின் பெண்களுக்கு இலவச எல்பிஜி இணைப்புகளை வழங்குகிறது."
+                },
+                benefits: {
+                    en: [
+                        "Free LPG connection",
+                        "First refill and stove provided free of cost",
+                        "Subsidy on subsequent refills"
+                    ],
+                    hi: [
+                        "मुफ्त एलपीजी कनेक्शन",
+                        "पहली रिफिल और स्टोव मुफ्त में प्रदान किया गया",
+                        "बाद की रिफिल पर सब्सिडी"
+                    ],
+                    bn: [
+                        "বিনামূল্যে এলপিজি সংযোগ",
+                        "প্রথম রিফিল এবং স্টোভ বিনামূল্যে প্রদান করা হয়",
+                        "পরবর্তী রিফিলে ভর্তুকি"
+                    ],
+                    ta: [
+                        "இலவச எல்பிஜி இணைப்பு",
+                        "முதல் நிரப்புதல் மற்றும் அடுப்பு இலவசமாக வழங்கப்படுகிறது",
+                        "அடுத்தடுத்த நிரப்புதல்களுக்கான மானியம்"
+                    ]
+                },
+                documents: {
+                    en: [
+                        "Aadhaar Card",
+                        "BPL Ration Card",
+                        "Bank Account Details",
+                        "Proof of Address"
+                    ],
+                    hi: [
+                        "आधार कार्ड",
+                        "बीपीएल राशन कार्ड",
+                        "बैंक खाता विवरण",
+                        "पता प्रमाण"
+                    ],
+                    bn: [
+                        "আধার কার্ড",
+                        "বিপিএল রেশন কার্ড",
+                        "ব্যাংক অ্যাকাউন্টের বিবরণ",
+                        "ঠিকানা প্রমাণ"
+                    ],
+                    ta: [
+                        "ஆதார் அட்டை",
+                        "BPL ரேஷன் கார்டு",
+                        "வங்கி கணக்கு விவரங்கள்",
+                        "முகவரி சான்று"
+                    ]
+                },
+                applyLink: "https://pmuy.gov.in/",
+                eligibility: {
+                    gender: "female",
+                    income: ["lt1", "1to3"],
+                    state: ["andhra", "bihar", "delhi", "gujarat", "karnataka", "kerala", "maharashtra", "tamilnadu", "up", "westbengal"]
+                },
+                tags: {
+                    en: ["LPG", "Women", "Clean Cooking"],
+                    hi: ["एलपीजी", "महिलाएं", "स्वच्छ खाना पकाने"],
+                    bn: ["এলপিজি", "মহিলা", "পরিষ্কার রান্না"],
+                    ta: ["எல்பிஜி", "பெண்கள்", "சுத்தமான சமையல்"]
+                },
+                ministry: {
+                    en: "Ministry of Petroleum",
+                    hi: "पेट्रोलियम मंत्रालय",
+                    bn: "পেট্রোলিয়াম মন্ত্রণালয়",
+                    ta: "பெட்ரோலிய அமைச்சகம்"
+                }
+            },
+            {
+                id: "kanyashree",
+                name: {
+                    en: "Kanyashree Prakalpa (West Bengal only)",
+                    hi: "कन्याश्री प्रकल्पा (केवल पश्चिम बंगाल)",
+                    bn: "কন্যাশ্রী প্রকল্প (শুধুমাত্র পশ্চিমবঙ্গ)",
+                    ta: "கன்யாஸ்ரீ பிரகல்பா (மேற்கு வங்காளம் மட்டும்)"
+                },
+                description: {
+                    en: "Conditional cash transfer scheme for girl children in West Bengal.",
+                    hi: "पश्चिम बंगाल में लड़कियों के लिए सशर्त नकद हस्तांतरण योजना।",
+                    bn: "পশ্চিমবঙ্গে মেয়ে শিশুদের জন্য শর্তসাপেক্ষ নগদ হস্তান্তর প্রকল্প।",
+                    ta: "மேற்கு வங்காளத்தில் பெண் குழந்தைகளுக்கான நிபந்தனை நிதி பரிமாற்ற திட்டம்."
+                },
+                benefits: {
+                    en: [
+                        "₹25,000 one-time grant at age 18 if studying",
+                        "₹1,000 annual scholarship for girls aged 13-18",
+                        "Encourages education and delays child marriage"
+                    ],
+                    hi: [
+                        "18 वर्ष की आयु में अध्ययन करने पर ₹25,000 एकमुश्त अनुदान",
+                        "13-18 वर्ष की आयु की लड़कियों के लिए ₹1,000 वार्षिक छात्रवृत्ति",
+                        "शिक्षा को प्रोत्साहित करता है और बाल विवाह में देरी करता है"
+                    ],
+                    bn: [
+                        "১৮ বছর বয়সে অধ্যয়নরত অবস্থায় ₹২৫,০০০ এককালীন অনুদান",
+                        "১৩-১৮ বছর বয়সী মেয়েদের জন্য ₹১,০০০ বার্ষিক বৃত্তি",
+                        "শিক্ষাকে উৎসাহিত করে এবং শিশু বিবাহ বিলম্বিত করে"
+                    ],
+                    ta: [
+                        "18 வயதில் படிக்கும் நிலையில் ₹25,000 ஒரு முறை மானியம்",
+                        "13-18 வயது பெண்களுக்கு ₹1,000 வருடாந்திர உதவித்தொகை",
+                        "கல்வியை ஊக்குவிக்கிறது மற்றும் குழந்தை திருமணத்தை தாமதப்படுத்துகிறது"
+                    ]
+                },
+                documents: {
+                    en: [
+                        "Birth Certificate",
+                        "School/College ID",
+                        "Bank Account Details",
+                        "Aadhaar Card"
+                    ],
+                    hi: [
+                        "जन्म प्रमाण पत्र",
+                        "स्कूल/कॉलेज आईडी",
+                        "बैंक खाता विवरण",
+                        "आधार कार्ड"
+                    ],
+                    bn: [
+                        "জন্ম শংসাপত্র",
+                        "স্কুল/কলেজ আইডি",
+                        "ব্যাংক অ্যাকাউন্টের বিবরণ",
+                        "আধার কার্ড"
+                    ],
+                    ta: [
+                        "பிறப்பு சான்றிதழ்",
+                        "பள்ளி/கல்லூரி அடையாள அட்டை",
+                        "வங்கி கணக்கு விவரங்கள்",
+                        "ஆதார் அட்டை"
+                    ]
+                },
+                applyLink: "https://wbkanyashree.gov.in/",
+                eligibility: {
+                    age: "13-18",
+                    gender: "female",
+                    state: ["westbengal"]
+                },
+                tags: {
+                    en: ["Girl Child", "Education", "Scholarship"],
+                    hi: ["बालिका", "शिक्षा", "छात्रवृत्ति"],
+                    bn: ["মেয়ে শিশু", "শিক্ষা", "বৃত্তি"],
+                    ta: ["பெண் குழந்தை", "கல்வி", "உதவித்தொகை"]
+                },
+                ministry: {
+                    en: "West Bengal Govt.",
+                    hi: "पश्चिम बंगाल सरकार",
+                    bn: "পশ্চিমবঙ্গ সরকার",
+                    ta: "மேற்கு வங்காள அரசு"
+                }
+            }
+        ];
+
+        // App state
+        let currentLanguage = 'en';
+        let userProfile = {};
+        let voiceAssistantActive = false;
+        let recognition;
+        let mobileMenuOpen = false;
+
+        // Initialize the app
+        function init() {
+            // Check if language is already set in localStorage
+            const savedLanguage = localStorage.getItem('socialSahayakLanguage');
+            if (savedLanguage) {
+                currentLanguage = savedLanguage;
+                updateLanguage();
+            }
+            
+            // Get user profile from localStorage
+            const savedProfile = localStorage.getItem('socialSahayakProfile');
+            if (savedProfile) {
+                userProfile = JSON.parse(savedProfile);
+                updateUserProfileSummary();
+                
+                // Find eligible schemes
+                const eligibleSchemes = findEligibleSchemes();
+                
+                // Display results
+                displayEligibleSchemes(eligibleSchemes);
+                
+                // Animate results
+                animateResults();
+            } else {
+                // If no profile found, redirect to questionnaire
+                window.location.href = 'questions.html';
+            }
+            
+            // Set up event listeners
+            setupEventListeners();
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            // Voice assistant button
+            document.getElementById('voiceAssistantBtnR').addEventListener('click', toggleVoiceAssistant);
+            
+            // Voice recognition button
+            document.getElementById('voiceButton').addEventListener('click', toggleVoiceRecognition);
+            
+            // Feedback form
+            document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                submitFeedbackForm();
+            });
+        }
+
+        // Animate results page elements
+        function animateResults() {
+            const elements = document.querySelectorAll('.staggered-fade-in');
+            elements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+                el.style.opacity = 1;
+            });
+        }
+
+        // Update user profile summary
+        function updateUserProfileSummary() {
+            // Age
+            document.getElementById('summaryAge').textContent = userProfile.age || '-';
+            
+            // Income
+            if (userProfile.income) {
+                const incomeOption = getOptionLabel('income', userProfile.income);
+                document.getElementById('summaryIncome').textContent = incomeOption || '-';
+            } else {
+                document.getElementById('summaryIncome').textContent = '-';
+            }
+            
+            // Location
+            if (userProfile.state) {
+                const stateOption = getOptionLabel('state', userProfile.state);
+                document.getElementById('summaryLocation').textContent = stateOption || '-';
+            } else {
+                document.getElementById('summaryLocation').textContent = '-';
+            }
+            
+            // Category
+            if (userProfile.caste) {
+                const casteOption = getOptionLabel('caste', userProfile.caste);
+                document.getElementById('summaryCategory').textContent = casteOption || '-';
+            } else {
+                document.getElementById('summaryCategory').textContent = '-';
+            }
+        }
+
+        // Get label for a select/radio option
+        function getOptionLabel(questionKey, value) {
+            // This would normally come from your questions data
+            // For simplicity, we'll just return the value here
+            return value;
+        }
+
+        // Find eligible schemes based on user profile
+        function findEligibleSchemes() {
+            return schemes.filter(scheme => {
+                // Check each eligibility condition
+                for (const [key, condition] of Object.entries(scheme.eligibility)) {
+                    if (!checkCondition(key, condition, userProfile)) {
+                        return false;
+                    }
+                }
+                return true;
+            });
+        }
+
+        // Check a single eligibility condition
+        function checkCondition(key, condition, profile) {
+            const value = profile[key];
+            
+            if (value === undefined || value === null) {
+                return false;
+            }
+            
+            // Handle different condition types
+            if (key === 'age') {
+                if (condition.includes('-')) {
+                    // Age range (e.g., "13-18")
+                    const [min, max] = condition.split('-').map(Number);
+                    return value >= min && value <= max;
+                } else if (condition.startsWith('>=')) {
+                    // Minimum age (e.g., ">=18")
+                    const minAge = Number(condition.substring(2));
+                    return value >= minAge;
+                } else if (condition.startsWith('<=')) {
+                    // Maximum age (e.g., "<=60")
+                    const maxAge = Number(condition.substring(2));
+                    return value <= maxAge;
+                }
+            } else if (key === 'income') {
+                // Income bracket (array of allowed brackets)
+                if (Array.isArray(condition)) {
+                    return condition.includes(value);
+                }
+            } else if (key === 'state') {
+                // State (array of allowed states)
+                if (Array.isArray(condition)) {
+                    return condition.includes(value);
+                }
+            } else if (key === 'gender') {
+                // Gender (specific value or "any")
+                return condition === 'any' || condition === value;
+            } else if (key === 'caste') {
+                // Caste (array of allowed castes)
+                if (Array.isArray(condition)) {
+                    return condition.includes(value);
+                }
+            } else if (key === 'disability') {
+                // Disability (usually "yes")
+                return condition === value;
+            }
+            
+            return false;
+        }
+
+        // Display eligible schemes
+        function displayEligibleSchemes(schemes) {
+            const container = document.getElementById('schemesContainer');
+            const noResults = document.getElementById('noResults');
+            
+            // Clear previous results
+            container.innerHTML = '';
+            
+            if (schemes.length === 0) {
+                // Show no results message
+                noResults.classList.remove('hidden');
+                return;
+            }
+            
+            // Hide no results message
+            noResults.classList.add('hidden');
+            
+            // Update schemes found text
+            document.getElementById('schemesFoundText').textContent = 
+                `${schemes.length} ${translations[currentLanguage].schemesFoundText.split(' ')[1]} ${translations[currentLanguage].schemesFoundText.split(' ')[2]}`;
+            
+            // Create scheme cards
+            schemes.forEach((scheme, index) => {
+                const card = document.createElement('div');
+                card.className = `scheme-card card overflow-hidden staggered-fade-in`;
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                card.innerHTML = `
+                    <div class="p-6 md:p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">${scheme.name[currentLanguage]}</h3>
+                                <p class="text-gray-600 mb-4">${scheme.description[currentLanguage]}</p>
+                            </div>
+                            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">${translations[currentLanguage].eligible || 'Eligible'}</span>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                ${scheme.tags[currentLanguage].map(tag => `
+                                    <span class="info-chip">
+                                        <i class="fas ${getTagIcon(tag)} mr-1"></i>
+                                        <span>${tag}</span>
+                                    </span>
+                                `).join('')}
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                        <i class="fas fa-gift mr-2 text-blue-600"></i>
+                                        <span>${translations[currentLanguage].benefits || 'Benefits'}</span>
+                                    </h4>
+                                    <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                        ${scheme.benefits[currentLanguage].map(b => `<li>${b}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                        <i class="fas fa-file-alt mr-2 text-blue-600"></i>
+                                        <span>${translations[currentLanguage].documentsRequired || 'Documents Required'}</span>
+                                    </h4>
+                                    <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                        ${scheme.documents[currentLanguage].map(d => `<li>${d}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-3">
+                            <a href="${scheme.applyLink}" target="_blank" class="btn-primary font-medium py-2 px-4 rounded-lg transition flex items-center">
+                                <span>${translations[currentLanguage].applyNow || 'Apply Now'}</span>
+                                <i class="fas fa-external-link-alt ml-2"></i>
+                            </a>
+                            <button class="btn-secondary font-medium py-2 px-4 rounded-lg transition flex items-center">
+                                <span>${translations[currentLanguage].viewDetails || 'View Details'}</span>
+                                <i class="fas fa-chevron-down ml-2"></i>
+                            </button>
+                            <button class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-lg transition flex items-center">
+                                <span>Save for Later</span>
+                                <i class="fas fa-bookmark ml-2"></i>
+                            </button>
+                        </div>
+                        <div class="mt-4 text-sm text-gray-500">
+                            <i class="fas fa-landmark mr-1"></i>
+                            ${scheme.ministry[currentLanguage]}
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        // Get icon for scheme tag
+        function getTagIcon(tag) {
+            if (tag.includes('Financial') || tag.includes('वित्तीय') || tag.includes('আর্থিক') || tag.includes('நிதி')) {
+                return 'fa-rupee-sign';
+            } else if (tag.includes('Housing') || tag.includes('आवास') || tag.includes('আবাসন') || tag.includes('வீடமைப்பு')) {
+                return 'fa-home';
+            } else if (tag.includes('Interest') || tag.includes('ब्याज') || tag.includes('সুদ') || tag.includes('வட்டி')) {
+                return 'fa-percentage';
+            } else if (tag.includes('Farmers') || tag.includes('किसान') || tag.includes('কৃষক') || tag.includes('விவசாயிகள்')) {
+                return 'fa-tractor';
+            } else if (tag.includes('Direct') || tag.includes('प्रत्यक्ष') || tag.includes('সরাসরি') || tag.includes('நேரடி')) {
+                return 'fa-indian-rupee-sign';
+            } else if (tag.includes('Health') || tag.includes('स्वास्थ्य') || tag.includes('স্বাস্থ্য') || tag.includes('சுகாதார')) {
+                return 'fa-shield-virus';
+            } else if (tag.includes('Insurance') || tag.includes('बीमा') || tag.includes('বীমা') || tag.includes('காப்பீடு')) {
+                return 'fa-file-contract';
+            } else if (tag.includes('LPG') || tag.includes('एलपीजी') || tag.includes('এলপিজি')) {
+                return 'fa-fire';
+            } else if (tag.includes('Women') || tag.includes('महिला') || tag.includes('মহিলা') || tag.includes('பெண்கள்')) {
+                return 'fa-female';
+            } else if (tag.includes('Education') || tag.includes('शिक्षा') || tag.includes('শিক্ষা') || tag.includes('கல்வி')) {
+                return 'fa-graduation-cap';
+            } else {
+                return 'fa-tag';
+            }
+        }
+
+        // Set language
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('socialSahayakLanguage', lang);
+            updateLanguage();
+            closeLanguageModal();
+        }
+
+        // Open language modal
+        function openLanguageModal() {
+            document.getElementById('languageModal').classList.remove('hidden');
+        }
+
+        // Close language modal
+        function closeLanguageModal() {
+            document.getElementById('languageModal').classList.add('hidden');
+        }
+
+        // Update all text elements to current language
+        function updateLanguage() {
+            const langData = translations[currentLanguage];
+            
+            // Update all elements with translations
+            for (const [key, value] of Object.entries(langData)) {
+                const elements = document.querySelectorAll(`[id="${key}"]`);
+                elements.forEach(el => {
+                    if (el.tagName === 'INPUT' && el.type === 'placeholder') {
+                        el.placeholder = value;
+                    } else {
+                        el.textContent = value;
+                    }
+                });
+            }
+            
+            // Update current language display
+            const currentLanguageElements = document.querySelectorAll('[id^="currentLanguage"]');
+            currentLanguageElements.forEach(el => {
+                el.textContent = langData.currentLanguage;
+            });
+            
+            // Update schemes if they're displayed
+            if (userProfile) {
+                const eligibleSchemes = findEligibleSchemes();
+                displayEligibleSchemes(eligibleSchemes);
+                updateUserProfileSummary();
+            }
+        }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            mobileMenuOpen = !mobileMenuOpen;
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (mobileMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('animate__animated', 'animate__fadeInDown');
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('animate__animated', 'animate__fadeInDown');
+            }
+        }
+
+        // Go back to questionnaire
+        function goBackToQuestionnaire() {
+            window.location.href = 'questions.html';
+        }
+
+        // Restart questionnaire
+        function restartQuestionnaire() {
+            localStorage.removeItem('socialSahayakProfile');
+            window.location.href = 'questions.html';
+        }
+
+        // Share results
+        function shareResults() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'SocialSahayak - My Eligible Schemes',
+                    text: 'Check out these government welfare schemes I qualify for!',
+                    url: window.location.href
+                }).catch(err => {
+                    console.log('Error sharing:', err);
+                });
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                alert(translations[currentLanguage].shareNotSupported || 'Sharing is not supported in your browser. You can copy the URL manually.');
+            }
+        }
+
+        // Save results
+        function saveResults() {
+            // In a real app, this would save to Firebase or localStorage
+            alert(translations[currentLanguage].resultsSaved || 'Your results have been saved! You can access them anytime from your profile.');
+        }
+
+        // Print results
+        function printResults() {
+            window.print();
+        }
+
+        // Toggle voice assistant
+        function toggleVoiceAssistant() {
+            voiceAssistantActive = !voiceAssistantActive;
+            const voiceModal = document.getElementById('voiceModal');
+            
+            if (voiceAssistantActive) {
+                voiceModal.classList.remove('hidden');
+                voiceModal.classList.add('animate__animated', 'animate__fadeInUp');
+            } else {
+                voiceModal.classList.add('hidden');
+                voiceModal.classList.remove('animate__animated', 'animate__fadeInUp');
+                if (recognition) {
+                    recognition.stop();
+                }
+            }
+        }
+
+        // Toggle voice recognition
+        function toggleVoiceRecognition() {
+            const voiceButton = document.getElementById('voiceButton');
+            const voiceStatusText = document.getElementById('voiceStatusText');
+            
+            if (!recognition) {
+                recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+                recognition.lang = currentLanguage === 'en' ? 'en-IN' : 
+                                  currentLanguage === 'hi' ? 'hi-IN' : 
+                                  currentLanguage === 'bn' ? 'bn-IN' : 'ta-IN';
+                recognition.interimResults = false;
+                
+                recognition.onstart = function() {
+                    voiceButton.innerHTML = `<i class="fas fa-microphone-slash mr-2"></i><span>${translations[currentLanguage].stopListening || 'Stop Listening'}</span>`;
+                    voiceStatusText.textContent = translations[currentLanguage].listening || 'Listening...';
+                };
+                
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    processVoiceCommand(transcript);
+                };
+                
+                recognition.onerror = function(event) {
+                    voiceStatusText.textContent = translations[currentLanguage].voiceError || 'Error occurred in recognition: ' + event.error;
+                    voiceButton.innerHTML = `<i class="fas fa-microphone mr-2"></i><span>${translations[currentLanguage].voiceButtonText || 'Start Speaking'}</span>`;
+                };
+                
+                recognition.onend = function() {
+                    voiceButton.innerHTML = `<i class="fas fa-microphone mr-2"></i><span>${translations[currentLanguage].voiceButtonText || 'Start Speaking'}</span>`;
+                    voiceStatusText.textContent = translations[currentLanguage].voiceStatusText || 'Click the microphone to start speaking';
+                };
+            }
+            
+            if (voiceButton.textContent.includes('Start') || voiceButton.textContent.includes('शुरू') || voiceButton.textContent.includes('শুরু') || voiceButton.textContent.includes('தொடங்கு')) {
+                recognition.start();
+            } else {
+                recognition.stop();
+            }
+        }
+
+        // Process voice command
+        function processVoiceCommand(command) {
+            // In the results page, voice commands would be for navigation or actions
+            if (command.toLowerCase().includes('back') || command.toLowerCase().includes('पीछे') || command.toLowerCase().includes('পিছনে') || command.toLowerCase().includes('பின்னால்')) {
+                goBackToQuestionnaire();
+            } else if (command.toLowerCase().includes('home') || command.toLowerCase().includes('मुख्य') || command.toLowerCase().includes('হোম') || command.toLowerCase().includes('முகப்பு')) {
+                window.location.href = 'dashboard.html';
+            } else if (command.toLowerCase().includes('share') || command.toLowerCase().includes('साझा') || command.toLowerCase().includes('শেয়ার') || command.toLowerCase().includes('பகிர்')) {
+                shareResults();
+            } else if (command.toLowerCase().includes('save') || command.toLowerCase().includes('सहेजें') || command.toLowerCase().includes('সেভ') || command.toLowerCase().includes('சேமி')) {
+                saveResults();
+            } else {
+                document.getElementById('voiceStatusText').textContent = 
+                    `${translations[currentLanguage].voiceNotUnderstood || 'Sorry, I didn\'t understand:'} ${command}`;
+            }
+        }
+
+        // Submit quick feedback
+        function submitFeedback(type) {
+            // In a real app, this would send to a backend
+            if (type === 'yes') {
+                alert(translations[currentLanguage].feedbackThanks || 'Thank you for your feedback! We\'re glad we could help.');
+            } else {
+                showFeedbackForm();
+            }
+        }
+
+        // Show feedback form modal
+        function showFeedbackForm() {
+            document.getElementById('feedbackModal').classList.remove('hidden');
+            document.getElementById('feedbackModal').classList.add('animate__animated', 'animate__fadeIn');
+        }
+
+        // Close feedback form modal
+        function closeFeedbackModal() {
+            document.getElementById('feedbackModal').classList.add('hidden');
+            document.getElementById('feedbackModal').classList.remove('animate__animated', 'animate__fadeIn');
+        }
+
+        // Submit feedback form
+        function submitFeedbackForm() {
+            const message = document.getElementById('feedbackMessage').value;
+            const contact = document.getElementById('feedbackContact').value;
+            
+            if (!message) {
+                alert(translations[currentLanguage].feedbackRequired || 'Please enter your feedback before submitting.');
+                return;
+            }
+            
+            // In a real app, this would send to a backend
+            console.log('Feedback submitted:', { message, contact });
+            alert(translations[currentLanguage].feedbackSubmitted || 'Thank you for your feedback! We appreciate your input.');
+            closeFeedbackModal();
+            
+            // Reset form
+            document.getElementById('feedbackForm').reset();
+        }
+
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

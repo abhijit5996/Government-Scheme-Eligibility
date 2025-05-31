@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialSahayak - Government Welfare Scheme Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --primary-blue: #96C2DB;
+            --light-blue: #E5EDF1;
+            --dark-blue: #5A8DAA;
+            --accent-blue: #7AB0D1;
+            --white: #FFFFFF;
+            --dark-grey: #333333;
+            --light-grey: #F8F9FA;
+            --highlight-color: #2ecc71;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--white);
+            color: var(--dark-grey);
+            line-height: 1.6;
+        }
+        
+        .govt-header {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
+            box-shadow: 0 4px 20px rgba(90, 141, 170, 0.2);
+            border-bottom: 4px solid var(--highlight-color);
+        }
+        
+        .govt-footer {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
+            border-top: 4px solid var(--highlight-color);
+        }
+        
+        .emblem-bg {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .btn-primary {
+            background-color: var(--dark-blue);
+            color: white;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(90, 141, 170, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(90, 141, 170, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: var(--white);
+            color: var(--dark-blue);
+            border: 2px solid var(--dark-blue);
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--light-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(90, 141, 170, 0.2);
+        }
+        
+        .card {
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(149, 157, 165, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--white);
+            border: 1px solid var(--light-blue);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(149, 157, 165, 0.2);
+        }
+        
+        .nav-link {
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--highlight-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .active-nav:after {
+            width: 100%;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(90, 141, 170, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(90, 141, 170, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(90, 141, 170, 0);
+            }
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .staggered-fade-in {
+            animation: fadeInUp 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .official-badge {
+            background: linear-gradient(135deg, var(--highlight-color), #27ae60);
+            color: white;
+            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-15px);}
+            60% {transform: translateY(-7px);}
+        }
+        
+        .how-it-works-step {
+            position: relative;
+            padding-left: 60px;
+        }
+        
+        .how-it-works-step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(149, 157, 165, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid var(--light-blue);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(149, 157, 165, 0.2);
+        }
+        
+        .department-logo {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .department-logo {
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Government Header -->
+    <header class="govt-header text-white shadow-lg">
+        <div class="container mx-auto px-4">
+            <!-- Top Bar with Government Identity -->
+            <div class="py-3 flex flex-col md:flex-row justify-between items-center border-b border-blue-300">
+                <div class="flex items-center space-x-3 mb-3 md:mb-0">
+                    <div class="emblem-bg">
+                        <i class="fas fa-landmark text-2xl text-blue-800"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs uppercase tracking-wider">Government of India</div>
+                        <div class="font-bold text-sm md:text-base">Ministry of Social Justice and Empowerment</div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:flex items-center space-x-2">
+                        <i class="fas fa-phone-alt text-blue-200"></i>
+                        <span class="text-sm">Helpline: 1800-123-4567</span>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-2">
+                        <i class="fas fa-envelope text-blue-200"></i>
+                        <span class="text-sm">help@socialsahayak.gov.in</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Navigation -->
+            <nav class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-hands-helping text-3xl text-yellow-300"></i>
+                    <h1 class="text-2xl font-bold flex items-center font-['Space_Grotesk']">
+                        SocialSahayak
+                        <span class="official-badge ml-2">Official</span>
+                    </h1>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="nav-link active-nav text-white font-medium">Home</a>
+                    <a href="#features" class="nav-link text-white font-medium">Features</a>
+                    <a href="#how-it-works" class="nav-link text-white font-medium">How It Works</a>
+                    <a href="#testimonials" class="nav-link text-white font-medium">Testimonials</a>
+                    <a href="#partners" class="nav-link text-white font-medium">Partners</a>
+                    <div class="flex items-center space-x-4">
+                        <a href="login.html" class="btn-secondary font-medium px-6 py-2 rounded-lg">Login</a>
+                        <a href="register.html" class="btn-primary font-medium px-6 py-2 rounded-lg">Register</a>
+                    </div>
+                </div>
+                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </nav>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-blue-700 py-4 px-4">
+            <div class="flex flex-col space-y-4">
+                <a href="index.html" class="text-white font-medium">Home</a>
+                <a href="#features" class="text-white font-medium">Features</a>
+                <a href="#how-it-works" class="text-white font-medium">How It Works</a>
+                <a href="#testimonials" class="text-white font-medium">Testimonials</a>
+                <a href="#partners" class="text-white font-medium">Partners</a>
+                <div class="flex space-x-4 pt-2">
+                    <a href="login.html" class="btn-secondary font-medium px-4 py-2 rounded-lg w-full text-center">Login</a>
+                    <a href="register.html" class="btn-primary font-medium px-4 py-2 rounded-lg w-full text-center">Register</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 px-4 bg-gradient-to-r from-blue-50 to-indigo-50">
+        <div class="container mx-auto">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 animate__animated animate__fadeInLeft">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6 hero-title">
+                        Discover Government Welfare Schemes You Qualify For
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8">
+                        SocialSahayak helps citizens easily find and apply for government welfare schemes they're eligible for, saving time and effort.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="dashboard.html" class="btn-primary font-bold py-3 px-8 rounded-lg text-lg shadow-lg flex items-center justify-center">
+                            Get Started Now
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#how-it-works" class="btn-secondary font-bold py-3 px-8 rounded-lg text-lg shadow-lg flex items-center justify-center">
+                            How It Works
+                            <i class="fas fa-info-circle ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-10 flex items-center space-x-4">
+                        <div class="flex items-center">
+                            <div class="flex -space-x-2">
+                                <img src="https://randomuser.me/api/portraits/women/12.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="User">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="User">
+                                <img src="https://randomuser.me/api/portraits/women/45.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="User">
+                            </div>
+                            <div class="ml-4">
+                                <div class="text-sm font-medium text-gray-700">Trusted by 1M+ citizens</div>
+                                <div class="flex items-center mt-1">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star-half-alt text-yellow-400"></i>
+                                    <span class="text-sm text-gray-600 ml-1">4.7/5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 animate__animated animate__fadeInRight">
+                    <div class="card p-6 relative floating">
+                        <div class="absolute -top-4 -right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                            <i class="fas fa-bolt mr-1"></i> New
+                        </div>
+                        <img src="https://illustrations.popsy.co/amber/digital-nomad.svg" alt="Welfare Schemes" class="w-full h-auto">
+                        <div class="mt-6 text-center">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Simplified Access to Welfare Schemes</h3>
+                            <p class="text-gray-600">Our platform helps you navigate through hundreds of government schemes with ease.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Why Choose SocialSahayak?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">We make accessing government welfare schemes simple, fast, and hassle-free</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card p-6 staggered-fade-in" style="animation-delay: 0.1s">
+                    <div class="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-search text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 text-lg mb-2">Easy Discovery</h3>
+                    <p class="text-gray-600">Find all relevant schemes in one place with our intelligent matching system that considers your profile and eligibility.</p>
+                </div>
+                
+                <div class="card p-6 staggered-fade-in" style="animation-delay: 0.2s">
+                    <div class="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-language text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 text-lg mb-2">Multi-Language Support</h3>
+                    <p class="text-gray-600">Access information in Hindi, English, Bengali, Tamil and other regional languages for better understanding.</p>
+                </div>
+                
+                <div class="card p-6 staggered-fade-in" style="animation-delay: 0.3s">
+                    <div class="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-mobile-alt text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 text-lg mb-2">Mobile Friendly</h3>
+                    <p class="text-gray-600">Use our platform on any device, anywhere, without any hassle. Works perfectly on smartphones and tablets.</p>
+                </div>
+                
+                <div class="card p-6 staggered-fade-in" style="animation-delay: 0.4s">
+                    <div class="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-lock text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 text-lg mb-2">Secure & Private</h3>
+                    <p class="text-gray-600">Your data is protected with government-grade security measures. We never share your information without consent.</p>
+                </div>
+                
+                <div class="card p-6 staggered-fade-in" style="animation-delay: 0.5s">
+                    <div class="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-file-alt text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 text-lg mb-2">Document Guidance</h3>
+                    <p class="text-gray-600">Get clear information about required documents for each scheme to ensure smooth application process.</p>
+                </div>
+                
+                <div class="card p-6 staggered-fade-in" style="animation-delay: 0.6s">
+                    <div class="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-headset text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 text-lg mb-2">Support & Assistance</h3>
+                    <p class="text-gray-600">Our dedicated support team is available to help you with any questions or issues you may encounter.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">How SocialSahayak Works</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Getting started is simple and takes just a few minutes</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="how-it-works-step p-6">
+                    <div class="how-it-works-step-number">1</div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Create Your Profile</h3>
+                    <p class="text-gray-600">Register for free and provide basic information about yourself to help us understand your eligibility.</p>
+                </div>
+                
+                <div class="how-it-works-step p-6">
+                    <div class="how-it-works-step-number">2</div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Answer Simple Questions</h3>
+                    <p class="text-gray-600">Our questionnaire will ask about your age, income, location, and other factors that determine eligibility.</p>
+                </div>
+                
+                <div class="how-it-works-step p-6">
+                    <div class="how-it-works-step-number">3</div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Get Your Results</h3>
+                    <p class="text-gray-600">We'll show you all the schemes you qualify for with direct links to apply and document requirements.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 card p-8 max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-6 md:mb-0">
+                        <img src="https://illustrations.popsy.co/amber/security.svg" alt="Secure Process" class="w-full h-auto">
+                    </div>
+                    <div class="md:w-1/2 md:pl-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Your Security is Our Priority</h3>
+                        <p class="text-gray-600 mb-4">We use bank-level encryption to protect your personal information. Your data is never shared without your explicit consent.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span class="text-gray-700">256-bit SSL encryption</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span class="text-gray-700">No unnecessary data collection</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span class="text-gray-700">Government-approved security standards</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">What Citizens Are Saying</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Hear from people who have benefited from our platform</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="testimonial-card p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" class="w-12 h-12 rounded-full mr-4" alt="User">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Priya Sharma</h4>
+                            <p class="text-sm text-gray-600">Farmer, Uttar Pradesh</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Thanks to SocialSahayak, I discovered the PM Kisan Samman Nidhi scheme I was eligible for. The application process was so simple!"</p>
+                    <div class="flex items-center">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" class="w-12 h-12 rounded-full mr-4" alt="User">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Rahul Patel</h4>
+                            <p class="text-sm text-gray-600">Small Business Owner, Gujarat</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"I never knew about the Mudra Loan scheme until I used SocialSahayak. It helped me expand my small shop with low interest rates."</p>
+                    <div class="flex items-center">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star-half-alt text-yellow-400"></i>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/56.jpg" class="w-12 h-12 rounded-full mr-4" alt="User">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Sunita Devi</h4>
+                            <p class="text-sm text-gray-600">Homemaker, Bihar</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Ujjwala Yojana gave us our first LPG connection. SocialSahayak made it so easy to apply with clear document instructions."</p>
+                    <div class="flex items-center">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="partners" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">In Collaboration With</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Supported by government ministries and departments</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 items-center justify-center">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8f/Emblem_of_India.svg/1200px-Emblem_of_India.svg.png" alt="Government of India" class="department-logo h-16">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8f/Emblem_of_India.svg/1200px-Emblem_of_India.svg.png" alt="Ministry of Rural Development" class="department-logo h-16">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8f/Emblem_of_India.svg/1200px-Emblem_of_India.svg.png" alt="Ministry of Women and Child Development" class="department-logo h-16">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8f/Emblem_of_India.svg/1200px-Emblem_of_India.svg.png" alt="Ministry of Education" class="department-logo h-16">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8f/Emblem_of_India.svg/1200px-Emblem_of_India.svg.png" alt="Ministry of Health" class="department-logo h-16">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8f/Emblem_of_India.svg/1200px-Emblem_of_India.svg.png" alt="Ministry of Agriculture" class="department-logo h-16">
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-blue-700 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Ready to Discover Your Eligible Schemes?</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">Join over 1 million citizens who have found government welfare programs they qualify for.</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="register.html" class="bg-white text-blue-700 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg text-lg shadow-lg transition transform hover:scale-105 inline-flex items-center justify-center">
+                    <span>Register Now</span>
+                    <i class="fas fa-user-plus ml-2"></i>
+                </a>
+                <a href="login.html" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-700 font-bold py-3 px-8 rounded-lg text-lg shadow-lg transition transform hover:scale-105 inline-flex items-center justify-center">
+                    <span>Login</span>
+                    <i class="fas fa-sign-in-alt ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Government Footer -->
+    <footer class="govt-footer text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-hands-helping text-2xl text-yellow-300"></i>
+                        <h2 class="text-xl font-bold font-['Space_Grotesk']">SocialSahayak</h2>
+                    </div>
+                    <p class="text-blue-200 mb-4">Bridging citizens with welfare schemes</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-blue-200 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-blue-200 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-blue-200 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-blue-200 hover:text-white transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-blue-200 hover:text-white transition">Home</a></li>
+                        <li><a href="#features" class="text-blue-200 hover:text-white transition">Features</a></li>
+                        <li><a href="#how-it-works" class="text-blue-200 hover:text-white transition">How It Works</a></li>
+                        <li><a href="#testimonials" class="text-blue-200 hover:text-white transition">Testimonials</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Departments</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-blue-200 hover:text-white transition">Ministry of Social Justice</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition">Ministry of Rural Development</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition">Ministry of Women & Child</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition">Ministry of Health</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2 text-blue-200"></i>
+                            <span class="text-blue-200">Ministry of Social Justice and Empowerment, Shastri Bhawan, New Delhi</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-2 text-blue-200"></i>
+                            <span class="text-blue-200">Helpline: 1800-123-4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-blue-200"></i>
+                            <span class="text-blue-200">help@socialsahayak.gov.in</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-blue-500 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-blue-200 text-sm mb-4 md:mb-0">© 2023 SocialSahayak, Government of India. All rights reserved.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-blue-200 hover:text-white text-sm transition">Privacy Policy</a>
+                    <a href="#" class="text-blue-200 hover:text-white text-sm transition">Terms of Service</a>
+                    <a href="#" class="text-blue-200 hover:text-white text-sm transition">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('animate__animated', 'animate__fadeInDown');
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('animate__animated', 'animate__fadeInDown');
+            }
+        }
+
+        // Animate elements with staggered fade-in
+        function animateStaggeredElements() {
+            const elements = document.querySelectorAll('.staggered-fade-in');
+            elements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+                el.style.opacity = 1;
+            });
+        }
+
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            animateStaggeredElements();
+        });
+    </script>
+</body>
+</html>

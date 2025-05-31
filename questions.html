@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialSahayak - Eligibility Questionnaire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --primary-blue: #96C2DB;
+            --light-blue: #E5EDF1;
+            --dark-blue: #5A8DAA;
+            --accent-blue: #7AB0D1;
+            --white: #FFFFFF;
+            --dark-grey: #333333;
+            --light-grey: #F8F9FA;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--white);
+            color: var(--dark-grey);
+            line-height: 1.6;
+        }
+        
+        .govt-header {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
+            box-shadow: 0 4px 20px rgba(90, 141, 170, 0.2);
+        }
+        
+        .emblem-bg {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .btn-primary {
+            background-color: var(--dark-blue);
+            color: white;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(90, 141, 170, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(90, 141, 170, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: var(--white);
+            color: var(--dark-blue);
+            border: 2px solid var(--dark-blue);
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--light-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(90, 141, 170, 0.2);
+        }
+        
+        .card {
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(149, 157, 165, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--white);
+            border: 1px solid var(--light-blue);
+        }
+        
+        .progress-bar {
+            transition: width 0.5s ease;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--dark-blue));
+        }
+        
+        .language-option {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            border-radius: 8px;
+        }
+        
+        .language-option:hover {
+            border-color: var(--accent-blue);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(90, 141, 170, 0.2);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(90, 141, 170, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(90, 141, 170, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(90, 141, 170, 0);
+            }
+        }
+        
+        .question-number {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+            color: white;
+            border-radius: 12px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(90, 141, 170, 0.3);
+        }
+        
+        .staggered-fade-in {
+            animation: fadeInUp 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50">
+    <!-- Language Selector Modal -->
+    <div id="languageModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 animate__animated animate__fadeInUp">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 text-center flex-1">Select Language / भाषा चुनें</h2>
+                <button onclick="closeLanguageModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <button onclick="setLanguage('en')" class="py-3 px-4 bg-blue-50 hover:bg-blue-100 rounded-lg text-blue-800 font-medium transition flex items-center justify-center language-option">
+                    <i class="fas fa-language mr-2"></i> English
+                </button>
+                <button onclick="setLanguage('hi')" class="py-3 px-4 bg-blue-50 hover:bg-blue-100 rounded-lg text-blue-800 font-medium transition flex items-center justify-center language-option">
+                    <i class="fas fa-language mr-2"></i> हिंदी
+                </button>
+                <button onclick="setLanguage('bn')" class="py-3 px-4 bg-blue-50 hover:bg-blue-100 rounded-lg text-blue-800 font-medium transition flex items-center justify-center language-option">
+                    <i class="fas fa-language mr-2"></i> বাংলা
+                </button>
+                <button onclick="setLanguage('ta')" class="py-3 px-4 bg-blue-50 hover:bg-blue-100 rounded-lg text-blue-800 font-medium transition flex items-center justify-center language-option">
+                    <i class="fas fa-language mr-2"></i> தமிழ்
+                </button>
+            </div>
+            <p class="text-center mt-6 text-gray-500 text-sm">You can change language anytime</p>
+        </div>
+    </div>
+
+    <!-- Government Header -->
+    <header class="govt-header text-white shadow-lg">
+        <div class="container mx-auto px-4">
+            <!-- Top Bar with Government Identity -->
+            <div class="py-3 flex flex-col md:flex-row justify-between items-center border-b border-blue-300">
+                <div class="flex items-center space-x-3 mb-3 md:mb-0">
+                    <div class="emblem-bg">
+                        <i class="fas fa-landmark text-2xl text-blue-800"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs uppercase tracking-wider">Government of India</div>
+                        <div class="font-bold text-sm md:text-base">Ministry of Social Justice and Empowerment</div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:flex items-center space-x-2">
+                        <i class="fas fa-phone-alt text-blue-200"></i>
+                        <span class="text-sm">Helpline: 1800-123-4567</span>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-2">
+                        <i class="fas fa-envelope text-blue-200"></i>
+                        <span class="text-sm">help@socialsahayak.gov.in</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Navigation -->
+            <nav class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-hands-helping text-3xl text-white"></i>
+                    <h1 class="text-2xl font-bold flex items-center font-['Space_Grotesk']">
+                        SocialSahayak
+                        <span class="official-badge ml-2">Official</span>
+                    </h1>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="dashboard.html" class="text-white font-medium">Home</a>
+                    <a href="dashboard.html#schemes" class="text-white font-medium">All Schemes</a>
+                    <div class="flex items-center space-x-4">
+                        <button onclick="openLanguageModal()" class="flex items-center space-x-1 bg-white bg-opacity-20 hover:bg-opacity-30 px-3 py-1 rounded-full transition">
+                            <i class="fas fa-language"></i>
+                            <span id="currentLanguage">English</span>
+                        </button>
+                        <button onclick="toggleVoiceAssistant()" id="voiceAssistantBtn" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-2 rounded-full transition pulse">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </nav>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-blue-700 py-4 px-4">
+            <div class="flex flex-col space-y-4">
+                <a href="dashboard.html" class="text-white font-medium">Home</a>
+                <a href="dashboard.html#schemes" class="text-white font-medium">All Schemes</a>
+                <div class="flex items-center space-x-3">
+                    <button onclick="openLanguageModal()" class="flex items-center space-x-1 bg-white bg-opacity-20 hover:bg-opacity-30 px-3 py-1 rounded-full transition">
+                        <i class="fas fa-language"></i>
+                        <span id="currentLanguageMobile">English</span>
+                    </button>
+                    <button onclick="toggleVoiceAssistant()" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-2 rounded-full transition">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Questionnaire Content -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-8">
+            <a href="dashboard.html" class="flex items-center text-blue-700 hover:text-blue-900 transition">
+                <i class="fas fa-arrow-left mr-2"></i>
+                <span id="backButtonText">Back to Home</span>
+            </a>
+            <div class="flex items-center space-x-4">
+                <button onclick="openLanguageModal()" class="flex items-center space-x-1 bg-blue-100 hover:bg-blue-200 px-3 py-1 rounded-full transition text-blue-700">
+                    <i class="fas fa-language"></i>
+                    <span id="currentLanguageQ">English</span>
+                </button>
+                <button onclick="toggleVoiceAssistant()" id="voiceAssistantBtnQ" class="bg-blue-100 hover:bg-blue-200 p-2 rounded-full transition text-blue-700 pulse">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </header>
+        
+        <!-- Progress Card -->
+        <div class="card p-6 mb-8">
+            <div class="flex justify-between mb-2">
+                <span id="progressText" class="text-sm font-medium text-gray-600">Question 1 of 10</span>
+                <span id="progressPercent" class="text-sm font-medium text-gray-600">10%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2">
+                <div id="progressBar" class="bg-green-500 h-2.5 rounded-full progress-bar" style="width: 10%"></div>
+            </div>
+            <p class="text-sm text-gray-500">Please answer all questions to get accurate results</p>
+        </div>
+        
+        <!-- Question Card -->
+        <div id="questionContainer" class="max-w-2xl mx-auto">
+            <div class="card p-6 md:p-8">
+                <div class="flex items-center mb-4">
+                    <div class="question-number mr-3">
+                        <span id="questionNumber">1</span>
+                    </div>
+                    <h3 id="questionText" class="text-xl font-semibold text-gray-800">What is your age?</h3>
+                </div>
+                
+                <!-- Input fields will be dynamically inserted here -->
+                <div id="inputContainer" class="mb-6">
+                    <input type="number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your age">
+                </div>
+                
+                <div class="flex justify-between pt-4 border-t border-gray-200">
+                    <button id="prevButton" onclick="prevQuestion()" class="px-6 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg transition hidden">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        <span id="prevButtonText">Previous</span>
+                    </button>
+                    <button id="nextButton" onclick="nextQuestion()" class="ml-auto px-6 py-2 btn-primary rounded-lg transition">
+                        <span id="nextButtonText">Next</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Help Card -->
+            <div class="card p-4 mt-4 bg-blue-50 border border-blue-100">
+                <div class="flex items-start">
+                    <i class="fas fa-info-circle text-blue-600 mt-1 mr-2"></i>
+                    <div>
+                        <h4 class="font-medium text-blue-800 mb-1">Why we ask this?</h4>
+                        <p class="text-sm text-blue-700">Many government schemes have age-based eligibility criteria. Your age helps us determine which programs you may qualify for.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Voice Assistant Modal -->
+    <div id="voiceModal" class="fixed bottom-6 right-6 hidden">
+        <div class="voice-modal bg-white rounded-xl overflow-hidden w-80 animate__animated animate__fadeInUp">
+            <div class="bg-blue-700 p-4 text-white flex justify-between items-center">
+                <h3 id="voiceModalTitle" class="font-medium">Voice Assistant</h3>
+                <button onclick="toggleVoiceAssistant()" class="text-white hover:text-blue-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-4">
+                <div id="voiceStatus" class="text-center py-4">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-microphone text-blue-600 text-xl"></i>
+                    </div>
+                    <p id="voiceStatusText" class="text-gray-600">Click the microphone to start speaking</p>
+                </div>
+                <button id="voiceButton" onclick="toggleVoiceRecognition()" class="w-full btn-primary py-3 rounded-lg transition flex items-center justify-center">
+                    <i class="fas fa-microphone mr-2"></i>
+                    <span id="voiceButtonText">Start Speaking</span>
+                </button>
+                <p class="text-xs text-gray-500 mt-3 text-center">Currently supports English and Hindi</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                currentLanguage: "English",
+                backButtonText: "Back to Home",
+                progressText: "Question 1 of 10",
+                questionText: "What is your age?",
+                prevButtonText: "Previous",
+                nextButtonText: "Next",
+                voiceModalTitle: "Voice Assistant",
+                voiceStatusText: "Click the microphone to start speaking",
+                voiceButtonText: "Start Speaking",
+                selectPlaceholder: "Select an option",
+                requiredField: "This field is required",
+                listening: "Listening...",
+                voiceError: "Error occurred in recognition: ",
+                voiceRegistered: "Registered:",
+                voiceNotUnderstood: "Sorry, I didn't understand:"
+            },
+            hi: {
+                currentLanguage: "हिंदी",
+                backButtonText: "होम पर वापस जाएं",
+                progressText: "प्रश्न 1 में से 10",
+                questionText: "आपकी आयु क्या है?",
+                prevButtonText: "पिछला",
+                nextButtonText: "अगला",
+                voiceModalTitle: "वॉयस सहायक",
+                voiceStatusText: "बोलना शुरू करने के लिए माइक्रोफोन पर क्लिक करें",
+                voiceButtonText: "बोलना शुरू करें",
+                selectPlaceholder: "एक विकल्प चुनें",
+                requiredField: "यह फ़ील्ड आवश्यक है",
+                listening: "सुन रहा हूँ...",
+                voiceError: "पहचान में त्रुटि हुई: ",
+                voiceRegistered: "पंजीकृत:",
+                voiceNotUnderstood: "क्षमा करें, मैं समझ नहीं पाया:"
+            },
+            bn: {
+                currentLanguage: "বাংলা",
+                backButtonText: "হোমে ফিরে যান",
+                progressText: "প্রশ্ন 10 এর মধ্যে 1",
+                questionText: "আপনার বয়স কত?",
+                prevButtonText: "পূর্ববর্তী",
+                nextButtonText: "পরবর্তী",
+                voiceModalTitle: "ভয়েস সহকারী",
+                voiceStatusText: "কথা বলতে শুরু করতে মাইক্রোফোনে ক্লিক করুন",
+                voiceButtonText: "কথা বলা শুরু করুন",
+                selectPlaceholder: "একটি বিকল্প নির্বাচন করুন",
+                requiredField: "এই ফিল্ডটি প্রয়োজনীয়",
+                listening: "শুনছি...",
+                voiceError: "স্বীকৃতিতে ত্রুটি হয়েছে: ",
+                voiceRegistered: "নিবন্ধিত:",
+                voiceNotUnderstood: "দুঃখিত, আমি বুঝতে পারিনি:"
+            },
+            ta: {
+                currentLanguage: "தமிழ்",
+                backButtonText: "முகப்புக்கு திரும்பு",
+                progressText: "கேள்வி 10 இல் 1",
+                questionText: "உங்கள் வயது என்ன?",
+                prevButtonText: "முந்தைய",
+                nextButtonText: "அடுத்தது",
+                voiceModalTitle: "குரல் உதவியாளர்",
+                voiceStatusText: "பேசத் தொடங்க மைக்ரோஃபோனைக் கிளிக் செய்க",
+                voiceButtonText: "பேசத் தொடங்கு",
+                selectPlaceholder: "ஒரு விருப்பத்தைத் தேர்ந்தெடுக்கவும்",
+                requiredField: "இந்த புலம் தேவையானது",
+                listening: "கேட்கிறது...",
+                voiceError: "அங்கீகரிப்பில் பிழை ஏற்பட்டது: ",
+                voiceRegistered: "பதிவு செய்யப்பட்டது:",
+                voiceNotUnderstood: "மன்னிக்கவும், எனக்கு புரியவில்லை:"
+            }
+        };
+
+        // Questions for the questionnaire
+        const questions = [
+            {
+                key: "age",
+                type: "number",
+                label: {
+                    en: "What is your age?",
+                    hi: "आपकी आयु क्या है?",
+                    bn: "আপনার বয়স কত?",
+                    ta: "உங்கள் வயது என்ன?"
+                },
+                placeholder: {
+                    en: "Enter your age",
+                    hi: "अपनी आयु दर्ज करें",
+                    bn: "আপনার বয়স লিখুন",
+                    ta: "உங்கள் வயதை உள்ளிடவும்"
+                }
+            },
+            {
+                key: "gender",
+                type: "radio",
+                label: {
+                    en: "What is your gender?",
+                    hi: "आपका लिंग क्या है?",
+                    bn: "আপনার লিঙ্গ কি?",
+                    ta: "உங்கள் பாலினம் என்ன?"
+                },
+                options: [
+                    {
+                        value: "male",
+                        label: {
+                            en: "Male",
+                            hi: "पुरुष",
+                            bn: "পুরুষ",
+                            ta: "ஆண்"
+                        }
+                    },
+                    {
+                        value: "female",
+                        label: {
+                            en: "Female",
+                            hi: "महिला",
+                            bn: "মহিলা",
+                            ta: "பெண்"
+                        }
+                    },
+                    {
+                        value: "other",
+                        label: {
+                            en: "Other",
+                            hi: "अन्य",
+                            bn: "অন্যান্য",
+                            ta: "மற்றவை"
+                        }
+                    }
+                ]
+            },
+            {
+                key: "state",
+                type: "select",
+                label: {
+                    en: "Which state do you live in?",
+                    hi: "आप किस राज्य में रहते हैं?",
+                    bn: "আপনি কোন রাজ্যে থাকেন?",
+                    ta: "நீங்கள் எந்த மாநிலத்தில் வாழ்கிறீர்கள்?"
+                },
+                options: [
+                    { value: "andhra", label: { en: "Andhra Pradesh", hi: "आंध्र प्रदेश", bn: "অন্ধ্র প্রদেশ", ta: "ஆந்திரப் பிரதேசம்" } },
+                    { value: "bihar", label: { en: "Bihar", hi: "बिहार", bn: "বিহার", ta: "பீகார்" } },
+                    { value: "delhi", label: { en: "Delhi", hi: "दिल्ली", bn: "দিল্লি", ta: "டெல்லி" } },
+                    { value: "gujarat", label: { en: "Gujarat", hi: "गुजरात", bn: "গুজরাট", ta: "குஜராத்" } },
+                    { value: "karnataka", label: { en: "Karnataka", hi: "कर्नाटक", bn: "কর্ণাটক", ta: "கர்நாடகா" } },
+                    { value: "kerala", label: { en: "Kerala", hi: "केरल", bn: "কেরালা", ta: "கேரளா" } },
+                    { value: "maharashtra", label: { en: "Maharashtra", hi: "महाराष्ट्र", bn: "মহারাষ্ট্র", ta: "மகாராஷ்டிரா" } },
+                    { value: "tamilnadu", label: { en: "Tamil Nadu", hi: "तमिल नाडु", bn: "তামিলনাড়ু", ta: "தமிழ்நாடு" } },
+                    { value: "up", label: { en: "Uttar Pradesh", hi: "उत्तर प्रदेश", bn: "উত্তর প্রদেশ", ta: "உத்தரப் பிரதேசம்" } },
+                    { value: "westbengal", label: { en: "West Bengal", hi: "पश्चिम बंगाल", bn: "পশ্চিমবঙ্গ", ta: "மேற்கு வங்காளம்" } }
+                ]
+            },
+            {
+                key: "income",
+                type: "select",
+                label: {
+                    en: "What is your annual family income?",
+                    hi: "आपकी वार्षिक पारिवारिक आय क्या है?",
+                    bn: "আপনার বার্ষিক পারিবারিক আয় কত?",
+                    ta: "உங்கள் வருடாந்திர குடும்ப வருமானம் என்ன?"
+                },
+                options: [
+                    { value: "lt1", label: { en: "Less than ₹1 lakh", hi: "₹1 लाख से कम", bn: "₹1 লাখের কম", ta: "₹1 லட்சத்திற்கும் குறைவாக" } },
+                    { value: "1to3", label: { en: "₹1-3 lakh", hi: "₹1-3 लाख", bn: "₹1-3 লাখ", ta: "₹1-3 லட்சம்" } },
+                    { value: "3to5", label: { en: "₹3-5 lakh", hi: "₹3-5 लाख", bn: "₹3-5 লাখ", ta: "₹3-5 லட்சம்" } },
+                    { value: "5to10", label: { en: "₹5-10 lakh", hi: "₹5-10 लाख", bn: "₹5-10 লাখ", ta: "₹5-10 லட்சம்" } },
+                    { value: "gt10", label: { en: "More than ₹10 lakh", hi: "₹10 लाख से अधिक", bn: "₹10 লাখের বেশি", ta: "₹10 லட்சத்திற்கும் மேல்" } }
+                ]
+            },
+            {
+                key: "caste",
+                type: "radio",
+                label: {
+                    en: "Do you belong to any reserved category?",
+                    hi: "क्या आप किसी आरक्षित श्रेणी से संबंध रखते हैं?",
+                    bn: "আপনি কি কোন সংরক্ষিত বিভাগের অন্তর্গত?",
+                    ta: "நீங்கள் எந்த ஒதுக்கப்பட்ட வகுப்பைச் சேர்ந்தவரா?"
+                },
+                options: [
+                    {
+                        value: "sc",
+                        label: {
+                            en: "SC (Scheduled Caste)",
+                            hi: "एससी (अनुसूचित जाति)",
+                            bn: "এসসি (তফসিলি জাতি)",
+                            ta: "SC (பட்டியல் சாதி)"
+                        }
+                    },
+                    {
+                        value: "st",
+                        label: {
+                            en: "ST (Scheduled Tribe)",
+                            hi: "एसटी (अनुसूचित जनजाति)",
+                            bn: "এসটি (তফসিলি উপজাতি)",
+                            ta: "ST (பட்டியல் பழங்குடி)"
+                        }
+                    },
+                    {
+                        value: "obc",
+                        label: {
+                            en: "OBC (Other Backward Class)",
+                            hi: "ओबीसी (अन्य पिछड़ा वर्ग)",
+                            bn: "ওবিসি (অন্যান্য পিছিয়ে পড়া শ্রেণী)",
+                            ta: "OBC (மற்ற பிற்படுத்தப்பட்ட வகுப்பு)"
+                        }
+                    },
+                    {
+                        value: "general",
+                        label: {
+                            en: "General",
+                            hi: "सामान्य",
+                            bn: "সাধারণ",
+                            ta: "பொது"
+                        }
+                    }
+                ]
+            },
+            {
+                key: "disability",
+                type: "radio",
+                label: {
+                    en: "Do you have any disability?",
+                    hi: "क्या आपको कोई विकलांगता है?",
+                    bn: "আপনার কি কোনো অক্ষমতা আছে?",
+                    ta: "உங்களுக்கு ஏதேனும் இயலாமை உள்ளதா?"
+                },
+                options: [
+                    {
+                        value: "yes",
+                        label: {
+                            en: "Yes",
+                            hi: "हाँ",
+                            bn: "হ্যাঁ",
+                            ta: "ஆம்"
+                        }
+                    },
+                    {
+                        value: "no",
+                        label: {
+                            en: "No",
+                            hi: "नहीं",
+                            bn: "না",
+                            ta: "இல்லை"
+                        }
+                    }
+                ]
+            },
+            {
+                key: "education",
+                type: "select",
+                label: {
+                    en: "What is your highest education level?",
+                    hi: "आपकी उच्चतम शिक्षा स्तर क्या है?",
+                    bn: "আপনার সর্বোচ্চ শিক্ষার স্তর কি?",
+                    ta: "உங்கள் உயர் கல்வி நிலை என்ன?"
+                },
+                options: [
+                    { value: "illiterate", label: { en: "Illiterate", hi: "निरक्षर", bn: "নিরক্ষর", ta: "கல்வியறிவில்லாத" } },
+                    { value: "primary", label: { en: "Primary School", hi: "प्राथमिक विद्यालय", bn: "প্রাথমিক বিদ্যালয়", ta: "தொடக்கப் பள்ளி" } },
+                    { value: "secondary", label: { en: "Secondary School", hi: "माध्यमिक विद्यालय", bn: "মাধ্যমিক বিদ্যালয়", ta: "இடைநிலைப் பள்ளி" } },
+                    { value: "higher", label: { en: "Higher Secondary", hi: "उच्च माध्यमिक", bn: "উচ্চ মাধ্যমিক", ta: "உயர் மேல்நிலை" } },
+                    { value: "graduate", label: { en: "Graduate", hi: "स्नातक", bn: "স্নাতক", ta: "பட்டதாரி" } },
+                    { value: "postgraduate", label: { en: "Post Graduate", hi: "स्नातकोत्तर", bn: "স্নাতকোত্তর", ta: "பட்ட மேற்படிப்பு" } }
+                ]
+            },
+            {
+                key: "employment",
+                type: "radio",
+                label: {
+                    en: "What is your employment status?",
+                    hi: "आपकी रोजगार स्थिति क्या है?",
+                    bn: "আপনার কর্মসংস্থানের অবস্থা কি?",
+                    ta: "உங்கள் வேலைவாய்ப்பு நிலை என்ன?"
+                },
+                options: [
+                    {
+                        value: "employed",
+                        label: {
+                            en: "Employed",
+                            hi: "नियोजित",
+                            bn: "নিযুক্ত",
+                            ta: "வேலை செய்பவர்"
+                        }
+                    },
+                    {
+                        value: "unemployed",
+                        label: {
+                            en: "Unemployed",
+                            hi: "बेरोजगार",
+                            bn: "বেকার",
+                            ta: "வேலையில்லாதவர்"
+                        }
+                    },
+                    {
+                        value: "student",
+                        label: {
+                            en: "Student",
+                            hi: "छात्र",
+                            bn: "ছাত্র",
+                            ta: "மாணவர்"
+                        }
+                    },
+                    {
+                        value: "retired",
+                        label: {
+                            en: "Retired",
+                            hi: "सेवानिवृत्त",
+                            bn: "অবসরপ্রাপ্ত",
+                            ta: "ஓய்வு பெற்றவர்"
+                        }
+                    }
+                ]
+            },
+            {
+                key: "family",
+                type: "number",
+                label: {
+                    en: "How many family members live with you?",
+                    hi: "आपके साथ कितने परिवार के सदस्य रहते हैं?",
+                    bn: "আপনার সাথে কতজন পরিবারের সদস্য থাকেন?",
+                    ta: "உங்களுடன் எத்தனை குடும்ப உறுப்பினர்கள் வாழ்கிறார்கள்?"
+                },
+                placeholder: {
+                    en: "Enter number of family members",
+                    hi: "परिवार के सदस्यों की संख्या दर्ज करें",
+                    bn: "পরিবারের সদস্যদের সংখ্যা লিখুন",
+                    ta: "குடும்ப உறுப்பினர்களின் எண்ணிக்கையை உள்ளிடவும்"
+                }
+            },
+            {
+                key: "children",
+                type: "number",
+                label: {
+                    en: "How many children below 18 years are in your family?",
+                    hi: "आपके परिवार में 18 वर्ष से कम उम्र के कितने बच्चे हैं?",
+                    bn: "আপনার পরিবারে 18 বছরের কম বয়সী কতজন শিশু আছে?",
+                    ta: "உங்கள் குடும்பத்தில் 18 வயதுக்குட்பட்ட எத்தனை குழந்தைகள் உள்ளனர்?"
+                },
+                placeholder: {
+                    en: "Enter number of children",
+                    hi: "बच्चों की संख्या दर्ज करें",
+                    bn: "শিশুদের সংখ্যা লিখুন",
+                    ta: "குழந்தைகளின் எண்ணிக்கையை உள்ளிடவும்"
+                }
+            }
+        ];
+
+        // App state
+        let currentLanguage = 'en';
+        let currentQuestionIndex = 0;
+        let userProfile = {};
+        let voiceAssistantActive = false;
+        let recognition;
+        let mobileMenuOpen = false;
+
+        // Initialize the app
+        function init() {
+            // Check if language is already set in localStorage
+            const savedLanguage = localStorage.getItem('socialSahayakLanguage');
+            if (savedLanguage) {
+                currentLanguage = savedLanguage;
+                updateLanguage();
+            } else {
+                // Show language modal if no language is set
+                document.getElementById('languageModal').classList.remove('hidden');
+            }
+            
+            // Set up event listeners
+            setupEventListeners();
+            
+            // Display first question
+            displayQuestion();
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            // Voice assistant buttons
+            document.getElementById('voiceAssistantBtn').addEventListener('click', toggleVoiceAssistant);
+            document.getElementById('voiceAssistantBtnQ').addEventListener('click', toggleVoiceAssistant);
+            
+            // Voice recognition button
+            document.getElementById('voiceButton').addEventListener('click', toggleVoiceRecognition);
+        }
+
+        // Display current question
+        function displayQuestion() {
+            const question = questions[currentQuestionIndex];
+            const questionText = document.getElementById('questionText');
+            const inputContainer = document.getElementById('inputContainer');
+            const questionNumber = document.getElementById('questionNumber');
+            
+            // Update question text and number
+            questionText.textContent = question.label[currentLanguage];
+            questionNumber.textContent = currentQuestionIndex + 1;
+            
+            // Update progress
+            const progressText = document.getElementById('progressText');
+            const progressPercent = document.getElementById('progressPercent');
+            const progressBar = document.getElementById('progressBar');
+            
+            const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+            progressText.textContent = `${translations[currentLanguage].progressText.split(' ')[0]} ${currentQuestionIndex + 1} ${translations[currentLanguage].progressText.split(' ')[2]} ${questions.length}`;
+            progressPercent.textContent = `${Math.round(progress)}%`;
+            progressBar.style.width = `${progress}%`;
+            
+            // Show/hide previous button
+            const prevButton = document.getElementById('prevButton');
+            if (currentQuestionIndex > 0) {
+                prevButton.classList.remove('hidden');
+            } else {
+                prevButton.classList.add('hidden');
+            }
+            
+            // Clear input container
+            inputContainer.innerHTML = '';
+            
+            // Create appropriate input based on question type
+            switch (question.type) {
+                case 'number':
+                    createNumberInput(question, inputContainer);
+                    break;
+                case 'radio':
+                    createRadioInput(question, inputContainer);
+                    break;
+                case 'select':
+                    createSelectInput(question, inputContainer);
+                    break;
+            }
+            
+            // Set existing answer if available
+            if (userProfile[question.key]) {
+                setAnswer(question, userProfile[question.key]);
+            }
+        }
+
+        // Create number input
+        function createNumberInput(question, container) {
+            const input = document.createElement('input');
+            input.type = 'number';
+            input.className = 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500';
+            input.placeholder = question.placeholder ? question.placeholder[currentLanguage] : '';
+            input.id = `input-${question.key}`;
+            input.min = 0;
+            container.appendChild(input);
+        }
+
+        // Create radio input
+        function createRadioInput(question, container) {
+            const optionsContainer = document.createElement('div');
+            optionsContainer.className = 'space-y-3';
+            
+            question.options.forEach(option => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'flex items-center';
+                
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = question.key;
+                input.value = option.value;
+                input.id = `input-${question.key}-${option.value}`;
+                input.className = 'h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500';
+                
+                const label = document.createElement('label');
+                label.htmlFor = `input-${question.key}-${option.value}`;
+                label.className = 'ml-3 block text-gray-700';
+                label.textContent = option.label[currentLanguage];
+                
+                optionDiv.appendChild(input);
+                optionDiv.appendChild(label);
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            container.appendChild(optionsContainer);
+        }
+
+        // Create select input
+        function createSelectInput(question, container) {
+            const select = document.createElement('select');
+            select.className = 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500';
+            select.id = `input-${question.key}`;
+            
+            // Add default option
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = translations[currentLanguage].selectPlaceholder || 'Select an option';
+            defaultOption.disabled = true;
+            defaultOption.selected = true;
+            select.appendChild(defaultOption);
+            
+            // Add options
+            question.options.forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option.value;
+                opt.textContent = option.label[currentLanguage];
+                select.appendChild(opt);
+            });
+            
+            container.appendChild(select);
+        }
+
+        // Set answer in input
+        function setAnswer(question, answer) {
+            switch (question.type) {
+                case 'number':
+                    document.getElementById(`input-${question.key}`).value = answer;
+                    break;
+                case 'radio':
+                    const radio = document.getElementById(`input-${question.key}-${answer}`);
+                    if (radio) radio.checked = true;
+                    break;
+                case 'select':
+                    document.getElementById(`input-${question.key}`).value = answer;
+                    break;
+            }
+        }
+
+        // Get answer from input
+        function getAnswer(question) {
+            switch (question.type) {
+                case 'number':
+                    const numValue = document.getElementById(`input-${question.key}`).value;
+                    return numValue !== '' ? parseInt(numValue) : null;
+                case 'radio':
+                    const selectedRadio = document.querySelector(`input[name="${question.key}"]:checked`);
+                    return selectedRadio ? selectedRadio.value : null;
+                case 'select':
+                    const select = document.getElementById(`input-${question.key}`);
+                    return select.value !== '' ? select.value : null;
+            }
+            return null;
+        }
+
+        // Go to next question
+        function nextQuestion() {
+            const question = questions[currentQuestionIndex];
+            const answer = getAnswer(question);
+            
+            if (answer === null || answer === '') {
+                alert(translations[currentLanguage].requiredField || 'This field is required');
+                return;
+            }
+            
+            // Save answer
+            userProfile[question.key] = answer;
+            
+            // If last question, show results
+            if (currentQuestionIndex === questions.length - 1) {
+                showResults();
+                return;
+            }
+            
+            // Go to next question
+            currentQuestionIndex++;
+            displayQuestion();
+            
+            // Scroll to top of question
+            window.scrollTo(0, 0);
+        }
+
+        // Go to previous question
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+                
+                // Scroll to top of question
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // Show results
+        function showResults() {
+            // Store user profile in localStorage to pass to results page
+            localStorage.setItem('socialSahayakUserProfile', JSON.stringify(userProfile));
+            
+            // Redirect to results page
+            window.location.href = 'schemes.html';
+        }
+
+        // Set language
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('socialSahayakLanguage', lang);
+            updateLanguage();
+            closeLanguageModal();
+        }
+
+        // Open language modal
+        function openLanguageModal() {
+            document.getElementById('languageModal').classList.remove('hidden');
+        }
+
+        // Close language modal
+        function closeLanguageModal() {
+            document.getElementById('languageModal').classList.add('hidden');
+        }
+
+        // Update all text elements to current language
+        function updateLanguage() {
+            const langData = translations[currentLanguage];
+            
+            // Update all elements with translations
+            for (const [key, value] of Object.entries(langData)) {
+                const elements = document.querySelectorAll(`[id="${key}"]`);
+                elements.forEach(el => {
+                    if (el.tagName === 'INPUT' && el.type === 'placeholder') {
+                        el.placeholder = value;
+                    } else {
+                        el.textContent = value;
+                    }
+                });
+            }
+            
+            // Update current language display
+            const currentLanguageElements = document.querySelectorAll('[id^="currentLanguage"]');
+            currentLanguageElements.forEach(el => {
+                el.textContent = langData.currentLanguage;
+            });
+            
+            // Update question if on questionnaire page
+            displayQuestion();
+        }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            mobileMenuOpen = !mobileMenuOpen;
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (mobileMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('animate__animated', 'animate__fadeInDown');
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('animate__animated', 'animate__fadeInDown');
+            }
+        }
+
+        // Toggle voice assistant
+        function toggleVoiceAssistant() {
+            voiceAssistantActive = !voiceAssistantActive;
+            const voiceModal = document.getElementById('voiceModal');
+            
+            if (voiceAssistantActive) {
+                voiceModal.classList.remove('hidden');
+                voiceModal.classList.add('animate__animated', 'animate__fadeInUp');
+            } else {
+                voiceModal.classList.add('hidden');
+                voiceModal.classList.remove('animate__animated', 'animate__fadeInUp');
+                if (recognition) {
+                    recognition.stop();
+                }
+            }
+        }
+
+        // Toggle voice recognition
+        function toggleVoiceRecognition() {
+            const voiceButton = document.getElementById('voiceButton');
+            const voiceStatusText = document.getElementById('voiceStatusText');
+            
+            if (!recognition) {
+                recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+                recognition.lang = currentLanguage === 'en' ? 'en-IN' : 
+                                  currentLanguage === 'hi' ? 'hi-IN' : 
+                                  currentLanguage === 'bn' ? 'bn-IN' : 'ta-IN';
+                recognition.interimResults = false;
+                
+                recognition.onstart = function() {
+                    voiceButton.innerHTML = `<i class="fas fa-microphone-slash mr-2"></i><span>${translations[currentLanguage].stopListening || 'Stop Listening'}</span>`;
+                    voiceStatusText.textContent = translations[currentLanguage].listening || 'Listening...';
+                };
+                
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    processVoiceCommand(transcript);
+                };
+                
+                recognition.onerror = function(event) {
+                    voiceStatusText.textContent = translations[currentLanguage].voiceError || 'Error occurred in recognition: ' + event.error;
+                    voiceButton.innerHTML = `<i class="fas fa-microphone mr-2"></i><span>${translations[currentLanguage].voiceButtonText || 'Start Speaking'}</span>`;
+                };
+                
+                recognition.onend = function() {
+                    voiceButton.innerHTML = `<i class="fas fa-microphone mr-2"></i><span>${translations[currentLanguage].voiceButtonText || 'Start Speaking'}</span>`;
+                    voiceStatusText.textContent = translations[currentLanguage].voiceStatusText || 'Click the microphone to start speaking';
+                };
+            }
+            
+            if (voiceButton.textContent.includes('Start') || voiceButton.textContent.includes('शुरू') || voiceButton.textContent.includes('শুরু') || voiceButton.textContent.includes('தொடங்கு')) {
+                recognition.start();
+            } else {
+                recognition.stop();
+            }
+        }
+
+        // Process voice command
+        function processVoiceCommand(command) {
+            const question = questions[currentQuestionIndex];
+            const inputContainer = document.getElementById('inputContainer');
+            let inputElement;
+            
+            // Get the appropriate input element
+            if (question.type === 'number') {
+                inputElement = document.getElementById(`input-${question.key}`);
+                // Extract numbers from command
+                const numbers = command.match(/\d+/);
+                if (numbers) {
+                    inputElement.value = numbers[0];
+                    document.getElementById('voiceStatusText').textContent = 
+                        `${translations[currentLanguage].voiceRegistered || 'Registered:'} ${numbers[0]}`;
+                } else {
+                    document.getElementById('voiceStatusText').textContent = 
+                        `${translations[currentLanguage].voiceNotUnderstood || 'Sorry, I didn\'t understand:'} ${command}`;
+                }
+                return;
+            } else if (question.type === 'radio') {
+                // Find the radio option that matches the command
+                const matchedOption = question.options.find(opt => 
+                    opt.label[currentLanguage].toLowerCase() === command.toLowerCase() ||
+                    command.toLowerCase().includes(opt.label[currentLanguage].toLowerCase())
+                );
+                
+                if (matchedOption) {
+                    inputElement = document.getElementById(`input-${question.key}-${matchedOption.value}`);
+                    inputElement.checked = true;
+                    document.getElementById('voiceStatusText').textContent = 
+                        `${translations[currentLanguage].voiceRegistered || 'Registered:'} ${matchedOption.label[currentLanguage]}`;
+                } else {
+                    document.getElementById('voiceStatusText').textContent = 
+                        `${translations[currentLanguage].voiceNotUnderstood || 'Sorry, I didn\'t understand:'} ${command}`;
+                }
+                return;
+            } else if (question.type === 'select') {
+                inputElement = document.getElementById(`input-${question.key}`);
+                
+                // Find the select option that matches the command
+                const matchedOption = question.options.find(opt => 
+                    opt.label[currentLanguage].toLowerCase() === command.toLowerCase() ||
+                    command.toLowerCase().includes(opt.label[currentLanguage].toLowerCase())
+                );
+                
+                if (matchedOption) {
+                    inputElement.value = matchedOption.value;
+                    document.getElementById('voiceStatusText').textContent = 
+                        `${translations[currentLanguage].voiceRegistered || 'Registered:'} ${matchedOption.label[currentLanguage]}`;
+                } else {
+                    document.getElementById('voiceStatusText').textContent = 
+                        `${translations[currentLanguage].voiceNotUnderstood || 'Sorry, I didn\'t understand:'} ${command}`;
+                }
+                return;
+            }
+            
+            // If we get here, the command wasn't understood
+            document.getElementById('voiceStatusText').textContent = 
+                `${translations[currentLanguage].voiceNotUnderstood || 'Sorry, I didn\'t understand:'} ${command}`;
+        }
+
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
