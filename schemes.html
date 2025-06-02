@@ -685,7 +685,7 @@
                 backResultsButtonText: "Back to Questions",
                 resultsTitle: "Here are your results!",
                 resultsSubtitle: "Based on your answers, you may be eligible for these government welfare schemes. Click on any scheme to view more details and application process.",
-                schemesFoundText: "5 schemes found",
+                schemesFoundText: "schemes found",
                 shareButtonText: "Share",
                 saveButtonText: "Save",
                 printButtonText: "Print",
@@ -720,7 +720,7 @@
                 backResultsButtonText: "प्रश्नों पर वापस जाएं",
                 resultsTitle: "आपके परिणाम यहां हैं!",
                 resultsSubtitle: "आपके उत्तरों के आधार पर, आप इन सरकारी कल्याणकारी योजनाओं के लिए पात्र हो सकते हैं। अधिक विवरण और आवेदन प्रक्रिया देखने के लिए किसी भी योजना पर क्लिक करें।",
-                schemesFoundText: "5 योजनाएं मिलीं",
+                schemesFoundText: "योजनाएं मिलीं",
                 shareButtonText: "साझा करें",
                 saveButtonText: "सहेजें",
                 printButtonText: "प्रिंट करें",
@@ -755,7 +755,7 @@
                 backResultsButtonText: "প্রশ্নে ফিরে যান",
                 resultsTitle: "এখানে আপনার ফলাফল আছে!",
                 resultsSubtitle: "আপনার উত্তরের ভিত্তিতে, আপনি এই সরকারি কল্যাণমূলক প্রকল্পগুলির জন্য যোগ্য হতে পারেন। আরও বিশদ এবং আবেদন প্রক্রিয়া দেখতে যে কোনও প্রকল্পে ক্লিক করুন।",
-                schemesFoundText: "5 টি প্রকল্প পাওয়া গেছে",
+                schemesFoundText: "টি প্রকল্প পাওয়া গেছে",
                 shareButtonText: "শেয়ার করুন",
                 saveButtonText: "সংরক্ষণ করুন",
                 printButtonText: "প্রিন্ট করুন",
@@ -790,7 +790,7 @@
                 backResultsButtonText: "கேள்விகளுக்கு திரும்பு",
                 resultsTitle: "உங்கள் முடிவுகள் இங்கே!",
                 resultsSubtitle: "உங்கள் பதில்களின் அடிப்படையில், இந்த அரசு நலத்திட்டங்களுக்கு நீங்கள் தகுதியானவராக இருக்கலாம். மேலும் விவரங்கள் மற்றும் விண்ணப்ப செயல்முறையைக் காண எந்தத் திட்டத்தையும் கிளிக் செய்யவும்.",
-                schemesFoundText: "5 திட்டங்கள் கிடைத்தன",
+                schemesFoundText: "திட்டங்கள் கிடைத்தன",
                 shareButtonText: "பகிர்",
                 saveButtonText: "சேமி",
                 printButtonText: "அச்சிடு",
@@ -1247,7 +1247,7 @@
             }
             
             // Get user profile from localStorage
-            const savedProfile = localStorage.getItem('socialSahayakProfile');
+            const savedProfile = localStorage.getItem('socialSahayakUserProfile');
             if (savedProfile) {
                 userProfile = JSON.parse(savedProfile);
                 updateUserProfileSummary();
@@ -1289,7 +1289,7 @@
             const elements = document.querySelectorAll('.staggered-fade-in');
             elements.forEach((el, index) => {
                 el.style.animationDelay = `${index * 0.1}s`;
-                el.style.opacity = 1;
+                el.classList.add('animate__animated', 'animate__fadeInUp');
             });
         }
 
@@ -1325,8 +1325,83 @@
 
         // Get label for a select/radio option
         function getOptionLabel(questionKey, value) {
-            // This would normally come from your questions data
-            // For simplicity, we'll just return the value here
+            // Find the question in the questions array (from questions.html)
+            const questions = [
+                {
+                    key: "income",
+                    options: [
+                        { value: "lt1", label: { en: "Less than ₹1 lakh", hi: "₹1 लाख से कम", bn: "₹1 লাখের কম", ta: "₹1 லட்சத்திற்கும் குறைவாக" } },
+                        { value: "1to3", label: { en: "₹1-3 lakh", hi: "₹1-3 लाख", bn: "₹1-3 লাখ", ta: "₹1-3 லட்சம்" } },
+                        { value: "3to5", label: { en: "₹3-5 lakh", hi: "₹3-5 लाख", bn: "₹3-5 লাখ", ta: "₹3-5 லட்சம்" } },
+                        { value: "5to10", label: { en: "₹5-10 lakh", hi: "₹5-10 लाख", bn: "₹5-10 লাখ", ta: "₹5-10 லட்சம்" } },
+                        { value: "gt10", label: { en: "More than ₹10 lakh", hi: "₹10 लाख से अधिक", bn: "₹10 লাখের বেশি", ta: "₹10 லட்சத்திற்கும் மேல்" } }
+                    ]
+                },
+                {
+                    key: "state",
+                    options: [
+                        { value: "andhra", label: { en: "Andhra Pradesh", hi: "आंध्र प्रदेश", bn: "অন্ধ্র প্রদেশ", ta: "ஆந்திரப் பிரதேசம்" } },
+                        { value: "bihar", label: { en: "Bihar", hi: "बिहार", bn: "বিহার", ta: "பீகார்" } },
+                        { value: "delhi", label: { en: "Delhi", hi: "दिल्ली", bn: "দিল্লি", ta: "டெல்லி" } },
+                        { value: "gujarat", label: { en: "Gujarat", hi: "गुजरात", bn: "গুজরাট", ta: "குஜராத்" } },
+                        { value: "karnataka", label: { en: "Karnataka", hi: "कर्नाटक", bn: "কর্ণাটক", ta: "கர்நாடகா" } },
+                        { value: "kerala", label: { en: "Kerala", hi: "केरल", bn: "কেরালা", ta: "கேரளா" } },
+                        { value: "maharashtra", label: { en: "Maharashtra", hi: "महाराष्ट्र", bn: "মহারাষ্ট্র", ta: "மகாராஷ்டிரா" } },
+                        { value: "tamilnadu", label: { en: "Tamil Nadu", hi: "तमिल नाडु", bn: "তামিলনাড়ু", ta: "தமிழ்நாடு" } },
+                        { value: "up", label: { en: "Uttar Pradesh", hi: "उत्तर प्रदेश", bn: "উত্তর প্রদেশ", ta: "உத்தரப் பிரதேசம்" } },
+                        { value: "westbengal", label: { en: "West Bengal", hi: "पश्चिम बंगाल", bn: "পশ্চিমবঙ্গ", ta: "மேற்கு வங்காளம்" } }
+                    ]
+                },
+                {
+                    key: "caste",
+                    options: [
+                        {
+                            value: "sc",
+                            label: {
+                                en: "SC (Scheduled Caste)",
+                                hi: "एससी (अनुसूचित जाति)",
+                                bn: "এসসি (তফসিলি জাতি)",
+                                ta: "SC (பட்டியல் சாதி)"
+                            }
+                        },
+                        {
+                            value: "st",
+                            label: {
+                                en: "ST (Scheduled Tribe)",
+                                hi: "एसटी (अनुसूचित जनजाति)",
+                                bn: "এসটি (তফসিলি উপজাতি)",
+                                ta: "ST (பட்டியல் பழங்குடி)"
+                            }
+                        },
+                        {
+                            value: "obc",
+                            label: {
+                                en: "OBC (Other Backward Class)",
+                                hi: "ओबीसी (अन्य पिछड़ा वर्ग)",
+                                bn: "ওবিসি (অন্যান্য পিছিয়ে পড়া শ্রেণী)",
+                                ta: "OBC (மற்ற பிற்படுத்தப்பட்ட வகுப்பு)"
+                            }
+                        },
+                        {
+                            value: "general",
+                            label: {
+                                en: "General",
+                                hi: "सामान्य",
+                                bn: "সাধারণ",
+                                ta: "பொது"
+                            }
+                        }
+                    ]
+                }
+            ];
+            
+            const question = questions.find(q => q.key === questionKey);
+            if (question) {
+                const option = question.options.find(opt => opt.value === value);
+                if (option) {
+                    return option.label[currentLanguage] || value;
+                }
+            }
             return value;
         }
 
@@ -1353,18 +1428,28 @@
             
             // Handle different condition types
             if (key === 'age') {
-                if (condition.includes('-')) {
-                    // Age range (e.g., "13-18")
-                    const [min, max] = condition.split('-').map(Number);
-                    return value >= min && value <= max;
-                } else if (condition.startsWith('>=')) {
-                    // Minimum age (e.g., ">=18")
-                    const minAge = Number(condition.substring(2));
-                    return value >= minAge;
-                } else if (condition.startsWith('<=')) {
-                    // Maximum age (e.g., "<=60")
-                    const maxAge = Number(condition.substring(2));
-                    return value <= maxAge;
+                if (typeof condition === 'string') {
+                    if (condition.includes('-')) {
+                        // Age range (e.g., "13-18")
+                        const [min, max] = condition.split('-').map(Number);
+                        return value >= min && value <= max;
+                    } else if (condition.startsWith('>=')) {
+                        // Minimum age (e.g., ">=18")
+                        const minAge = Number(condition.substring(2));
+                        return value >= minAge;
+                    } else if (condition.startsWith('<=')) {
+                        // Maximum age (e.g., "<=60")
+                        const maxAge = Number(condition.substring(2));
+                        return value <= maxAge;
+                    } else if (condition.startsWith('>')) {
+                        // Greater than (e.g., ">18")
+                        const minAge = Number(condition.substring(1));
+                        return value > minAge;
+                    } else if (condition.startsWith('<')) {
+                        // Less than (e.g., "<60")
+                        const maxAge = Number(condition.substring(1));
+                        return value < maxAge;
+                    }
                 }
             } else if (key === 'income') {
                 // Income bracket (array of allowed brackets)
@@ -1411,7 +1496,7 @@
             
             // Update schemes found text
             document.getElementById('schemesFoundText').textContent = 
-                `${schemes.length} ${translations[currentLanguage].schemesFoundText.split(' ')[1]} ${translations[currentLanguage].schemesFoundText.split(' ')[2]}`;
+                `${schemes.length} ${translations[currentLanguage].schemesFoundText}`;
             
             // Create scheme cards
             schemes.forEach((scheme, index) => {
@@ -1582,7 +1667,7 @@
 
         // Restart questionnaire
         function restartQuestionnaire() {
-            localStorage.removeItem('socialSahayakProfile');
+            localStorage.removeItem('socialSahayakUserProfile');
             window.location.href = 'questions.html';
         }
 
