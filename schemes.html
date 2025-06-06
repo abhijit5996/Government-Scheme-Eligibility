@@ -316,6 +316,50 @@
             font-weight: bold;
             box-shadow: 0 4px 12px rgba(90, 141, 170, 0.3);
         }
+
+        /* Print-specific styles */
+        @media print {
+            .govt-header, .govt-footer, #voiceModal, #feedbackModal, #languageModal,
+            button, .no-print {
+                display: none !important;
+            }
+            body {
+                background-color: white;
+                color: black;
+            }
+            .card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+            }
+            .scheme-details {
+                display: block !important;
+            }
+        }
+
+        /* Scheme details expandable section */
+        .scheme-details {
+            display: none;
+            padding: 20px;
+            background-color: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .scheme-details-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .scheme-details.active .scheme-details-content {
+            max-height: 1000px;
+        }
         
         @media (max-width: 768px) {
             .hero-title {
@@ -441,11 +485,11 @@
     <div class="container mx-auto px-4 py-8 flex-grow">
         <!-- Header -->
         <header class="flex justify-between items-center mb-8">
-            <button onclick="goBackToQuestionnaire()" class="flex items-center text-blue-700 hover:text-blue-900 transition">
+            <button onclick="goBackToQuestionnaire()" class="flex items-center text-blue-700 hover:text-blue-900 transition no-print">
                 <i class="fas fa-arrow-left mr-2"></i>
                 <span id="backResultsButtonText">Back to Questions</span>
             </button>
-            <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-4 no-print">
                 <button onclick="openLanguageModal()" class="flex items-center space-x-1 bg-blue-100 hover:bg-blue-200 px-3 py-1 rounded-full transition text-blue-700">
                     <i class="fas fa-language"></i>
                     <span id="currentLanguageR">English</span>
@@ -495,7 +539,7 @@
             </div>
             
             <!-- Results Count -->
-            <div class="flex items-center justify-between mb-6 staggered-fade-in" style="animation-delay: 0.1s">
+            <div class="flex items-center justify-between mb-6 staggered-fade-in no-print" style="animation-delay: 0.1s">
                 <h3 id="schemesFoundText" class="font-medium text-gray-700">5 schemes found</h3>
                 <div class="flex space-x-3">
                     <button onclick="shareResults()" class="flex items-center space-x-1 bg-blue-100 hover:bg-blue-200 px-3 py-1 rounded-lg transition text-blue-700">
@@ -538,7 +582,7 @@
             </div>
             
             <!-- Feedback Section -->
-            <div class="card p-6 mt-10 staggered-fade-in" style="animation-delay: 0.3s">
+            <div class="card p-6 mt-10 staggered-fade-in no-print" style="animation-delay: 0.3s">
                 <h3 class="text-lg font-bold text-gray-800 mb-4">Was this helpful?</h3>
                 <p class="text-gray-600 mb-4">Your feedback helps us improve the service for other citizens.</p>
                 <div class="flex space-x-4">
@@ -610,7 +654,7 @@
     </div>
 
     <!-- Government Footer -->
-    <footer class="govt-footer text-white py-8">
+    <footer class="govt-footer text-white py-8 no-print">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                 <div>
@@ -904,6 +948,32 @@
                     hi: "आवास मंत्रालय",
                     bn: "আবাসন মন্ত্রণালয়",
                     ta: "வீடமைப்பு அமைச்சகம்"
+                },
+                details: {
+                    en: {
+                        overview: "Pradhan Mantri Awas Yojana (PMAY) is a credit linked subsidy scheme by the Government of India to provide affordable housing to the urban poor. The scheme aims to provide housing for all by 2022.",
+                        eligibilityDetails: "Applicants must be Indian citizens above 18 years of age. The scheme has different income categories with varying subsidy benefits. Women, SC/ST, and disabled persons are given priority.",
+                        applicationProcess: "1. Register on PMAY portal\n2. Fill the application form\n3. Upload required documents\n4. Submit for verification\n5. Receive approval and subsidy",
+                        contact: "PMAY Helpline: 1800-11-6163\nEmail: pmaymis-mhupa@gov.in"
+                    },
+                    hi: {
+                        overview: "प्रधानमंत्री आवास योजना (पीएमएवाई) शहरी गरीबों को किफायती आवास प्रदान करने के लिए भारत सरकार की एक क्रेडिट लिंक्ड सब्सिडी योजना है। इस योजना का उद्देश्य 2022 तक सभी के लिए आवास उपलब्ध कराना है।",
+                        eligibilityDetails: "आवेदक 18 वर्ष से अधिक आयु के भारतीय नागरिक होने चाहिए। इस योजना में विभिन्न आय श्रेणियों के लिए अलग-अलग सब्सिडी लाभ हैं। महिलाओं, एससी/एसटी और विकलांग व्यक्तियों को प्राथमिकता दी जाती है।",
+                        applicationProcess: "1. पीएमएवाई पोर्टल पर पंजीकरण करें\n2. आवेदन पत्र भरें\n3. आवश्यक दस्तावेज अपलोड करें\n4. सत्यापन के लिए जमा करें\n5. अनुमोदन और सब्सिडी प्राप्त करें",
+                        contact: "पीएमएवाई हेल्पलाइन: 1800-11-6163\nईमेल: pmaymis-mhupa@gov.in"
+                    },
+                    bn: {
+                        overview: "প্রধানমন্ত্রী আবাস যোজনা (PMAY) শহুরে দরিদ্রদের সাশ্রয়ী মূল্যের আবাসন প্রদানের জন্য ভারত সরকারের একটি ক্রেডিট লিঙ্কড ভর্তুকি প্রকল্প। এই প্রকল্পের লক্ষ্য ২০২২ সালের মধ্যে সকলের জন্য আবাসন প্রদান করা।",
+                        eligibilityDetails: "আবেদনকারীদের অবশ্যই 18 বছর以上的 বয়সের ভারতীয় নাগরিক হতে হবে। প্রকল্পটিতে বিভিন্ন আয়ের বিভাগের জন্য বিভিন্ন ভর্তুকি সুবিধা রয়েছে। মহিলা, SC/ST এবং প্রতিবন্ধী ব্যক্তিদের অগ্রাধিকার দেওয়া হয়।",
+                        applicationProcess: "1. PMAY পোর্টালে নিবন্ধন করুন\n2. আবেদন ফর্ম পূরণ করুন\n3. প্রয়োজনীয় নথি আপলোড করুন\n4. যাচাইয়ের জন্য জমা দিন\n5. অনুমোদন এবং ভর্তুকি পান",
+                        contact: "PMAY হেল্পলাইন: 1800-11-6163\nইমেল: pmaymis-mhupa@gov.in"
+                    },
+                    ta: {
+                        overview: "பிரதம மந்திரி ஆவாஸ் யோஜனா (PMAY) என்பது நகர்ப்புற ஏழைகளுக்கு மலிவு வீடுகள் வழங்க இந்திய அரசின் கிரெடிட் இணைக்கப்பட்ட மானியத் திட்டமாகும். இந்த திட்டம் 2022க்குள் அனைவருக்கும் வீடுகள் வழங்குவதை நோக்கமாகக் கொண்டுள்ளது.",
+                        eligibilityDetails: "விண்ணப்பதாரர்கள் 18 வயதுக்கு மேற்பட்ட இந்திய குடிமக்களாக இருக்க வேண்டும். இந்த திட்டத்தில் வெவ்வேறு வருமான வகைகளுக்கு வெவ்வேறு மானிய நன்மைகள் உள்ளன. பெண்கள், SC/ST மற்றும் மாற்றுத்திறனாளிகளுக்கு முன்னுரிமை வழங்கப்படுகிறது.",
+                        applicationProcess: "1. PMAY போர்ட்டலில் பதிவு செய்யவும்\n2. விண்ணப்ப படிவத்தை நிரப்பவும்\n3. தேவையான ஆவணங்களை பதிவேற்றவும்\n4. சரிபார்ப்புக்காக சமர்ப்பிக்கவும்\n5. ஒப்புதல் மற்றும் மானியம் பெறவும்",
+                        contact: "PMAY உதவி எண்: 1800-11-6163\nமின்னஞ்சல்: pmaymis-mhupa@gov.in"
+                    }
                 }
             },
             {
@@ -984,6 +1054,32 @@
                     hi: "कृषि मंत्रालय",
                     bn: "কৃষি মন্ত্রণালয়",
                     ta: "விவசாய அமைச்சகம்"
+                },
+                details: {
+                    en: {
+                        overview: "PM Kisan Samman Nidhi is a Central Sector Scheme with 100% funding from the Government of India. Under this scheme, income support of ₹6,000 per year is provided to all landholding farmer families in three equal installments.",
+                        eligibilityDetails: "All landholding farmer families with cultivable land holding in their names are eligible. The landholder farmer family is defined as husband, wife and minor children who own cultivable land as per land records of the concerned State/UT.",
+                        applicationProcess: "1. Visit the PM Kisan portal\n2. Click on 'New Farmer Registration'\n3. Fill in details and upload documents\n4. Submit for verification\n5. Receive installments in bank account",
+                        contact: "PM Kisan Helpline: 011-23381092\nEmail: pmkisan-ict@gov.in"
+                    },
+                    hi: {
+                        overview: "पीएम किसान सम्मान निधि भारत सरकार द्वारा 100% वित्त पोषण के साथ एक केंद्रीय क्षेत्र की योजना है। इस योजना के तहत, सभी भूमिधारक किसान परिवारों को तीन समान किस्तों में प्रति वर्ष ₹6,000 की आय सहायता प्रदान की जाती है।",
+                        eligibilityDetails: "अपने नाम पर कृषि योग्य भूमि रखने वाले सभी किसान परिवार पात्र हैं। भूमिधारक किसान परिवार को पति, पत्नी और नाबालिग बच्चों के रूप में परिभाषित किया गया है जो संबंधित राज्य/केंद्र शासित प्रदेश के भूमि रिकॉर्ड के अनुसार कृषि योग्य भूमि के मालिक हैं।",
+                        applicationProcess: "1. पीएम किसान पोर्टल पर जाएं\n2. 'नया किसान पंजीकरण' पर क्लिक करें\n3. विवरण भरें और दस्तावेज अपलोड करें\n4. सत्यापन के लिए जमा करें\n5. बैंक खाते में किस्तें प्राप्त करें",
+                        contact: "पीएम किसान हेल्पलाइन: 011-23381092\nईमेल: pmkisan-ict@gov.in"
+                    },
+                    bn: {
+                        overview: "পিএম কিষাণ সম্মান নিধি হল ভারত সরকারের 100% তহবিল সহ একটি কেন্দ্রীয় সেক্টর স্কিম। এই প্রকল্পের অধীনে, সমস্ত জমিধারী কৃষক পরিবারকে তিনটি সমান কিস্তিতে বছরে ₹6,000 আয় সহায়তা প্রদান করা হয়।",
+                        eligibilityDetails: "যে সমস্ত কৃষক পরিবারের নিজের নামে চাষযোগ্য জমি রয়েছে তারা এই প্রকল্পের জন্য যোগ্য। জমিধারী কৃষক পরিবারকে স্বামী, স্ত্রী এবং নাবালক সন্তান হিসাবে সংজ্ঞায়িত করা হয়েছে যারা সংশ্লিষ্ট রাজ্য/কেন্দ্রশাসিত অঞ্চলের জমি রেকর্ড অনুযায়ী চাষযোগ্য জমির মালিক।",
+                        applicationProcess: "1. পিএম কিষাণ পোর্টালে যান\n2. 'নতুন কৃষক নিবন্ধন' ক্লিক করুন\n3. বিবরণ পূরণ করুন এবং নথি আপলোড করুন\n4. যাচাইয়ের জন্য জমা দিন\n5. ব্যাংক অ্যাকাউন্টে কিস্তি পান",
+                        contact: "পিএম কিষাণ হেল্পলাইন: 011-23381092\nইমেল: pmkisan-ict@gov.in"
+                    },
+                    ta: {
+                        overview: "பிஎம் கிசான் சம்மான் நிதி என்பது இந்திய அரசின் 100% நிதியுதவியுடன் ஒரு மத்திய துறை திட்டமாகும். இந்த திட்டத்தின் கீழ், அனைத்து நில உரிமையாளர் விவசாயி குடும்பங்களுக்கு ஆண்டுக்கு ₹6,000 வருமான ஆதரவு மூன்று சம தவணைகளில் வழங்கப்படுகிறது.",
+                        eligibilityDetails: "தங்கள் பெயரில் விளைநிலம் வைத்திருக்கும் அனைத்து விவசாயி குடும்பங்களும் தகுதியுடையவை. நில உரிமையாளர் விவசாயி குடும்பம் என்பது தொடர்புடைய மாநிலம்/யூனியன் பிரதேசத்தின் நில பதிவுகளின்படி விளைநிலத்தின் உரிமையாளரான கணவர், மனைவி மற்றும் சிறுவர்களைக் குறிக்கிறது.",
+                        applicationProcess: "1. பிஎம் கிசான் போர்ட்டலுக்குச் செல்லவும்\n2. 'புதிய விவசாயி பதிவு' என்பதைக் கிளிக் செய்க\n3. விவரங்களை நிரப்பி ஆவணங்களைப் பதிவேற்றவும்\n4. சரிபார்ப்புக்காக சமர்ப்பிக்கவும்\n5. வங்கிக் கணக்கில் தவணைகளைப் பெறவும்",
+                        contact: "பிஎம் கிசான் உதவி எண்: 011-23381092\nமின்னஞ்சல்: pmkisan-ict@gov.in"
+                    }
                 }
             },
             {
@@ -1064,6 +1160,32 @@
                     hi: "स्वास्थ्य मंत्रालय",
                     bn: "স্বাস্থ্য মন্ত্রণালয়",
                     ta: "சுகாதார அமைச்சகம்"
+                },
+                details: {
+                    en: {
+                        overview: "Ayushman Bharat Pradhan Mantri Jan Arogya Yojana (AB-PMJAY) is the world's largest health insurance/assurance scheme fully financed by the government. It provides a cover of ₹5 lakh per family per year for secondary and tertiary care hospitalization.",
+                        eligibilityDetails: "The scheme is targeted at poor, deprived rural families and identified occupational categories of urban workers' families. The beneficiaries are identified based on the deprivation and occupational criteria of Socio-Economic Caste Census 2011 (SECC 2011).",
+                        applicationProcess: "1. Check eligibility on PMJAY website\n2. Visit an empaneled hospital\n3. Present your Ayushman card or Aadhaar card\n4. Receive cashless treatment\n5. No need to pay any charges",
+                        contact: "Ayushman Bharat Helpline: 14555\nEmail: support@pmjay.gov.in"
+                    },
+                    hi: {
+                        overview: "आयुष्मान भारत प्रधानमंत्री जन आरोग्य योजना (एबी-पीएमजेएवाई) सरकार द्वारा पूरी तरह से वित्त पोषित दुनिया की सबसे बड़ी स्वास्थ्य बीमा/आश्वासन योजना है। यह माध्यमिक और तृतीयक देखभाल अस्पताल में भर्ती के लिए प्रति परिवार प्रति वर्ष ₹5 लाख का कवर प्रदान करता है।",
+                        eligibilityDetails: "यह योजना गरीब, वंचित ग्रामीण परिवारों और शहरी श्रमिकों के परिवारों की पहचान की गई व्यावसायिक श्रेणियों के लिए है। लाभार्थियों की पहचान सामाजिक-आर्थिक जाति जनगणना 2011 (एसईसीसी 2011) के अभाव और व्यावसायिक मानदंडों के आधार पर की जाती है।",
+                        applicationProcess: "1. पीएमजेएवाई वेबसाइट पर पात्रता की जांच करें\n2. एक पैनलबद्ध अस्पताल पर जाएं\n3. अपना आयुष्मान कार्ड या आधार कार्ड प्रस्तुत करें\n4. नकद रहित उपचार प्राप्त करें\n5. किसी भी शुल्क का भुगतान करने की आवश्यकता नहीं है",
+                        contact: "आयुष्मान भारत हेल्पलाइन: 14555\nईमेल: support@pmjay.gov.in"
+                    },
+                    bn: {
+                        overview: "আয়ুষ্মান ভারত প্রধানমন্ত্রী জন আরোগ্য যোজনা (AB-PMJAY) হল সরকার দ্বারা সম্পূর্ণ অর্থায়নে বিশ্বের বৃহত্তম স্বাস্থ্য বীমা/আশ্বাস প্রকল্প। এটি মাধ্যমিক এবং তৃতীয় স্তরের যত্নের হাসপাতালে ভর্তির জন্য প্রতি পরিবারে প্রতি বছর ₹5 লাখ কভার প্রদান করে।",
+                        eligibilityDetails: "এই প্রকল্পটি দরিদ্র, বঞ্চিত গ্রামীণ পরিবার এবং শহুরে শ্রমিকদের পরিবারের চিহ্নিত পেশাগত বিভাগগুলিকে লক্ষ্য করে। সুবিধাভোগীদের সনাক্ত করা হয় Socio-Economic Caste Census 2011 (SECC 2011) এর বঞ্চনা এবং পেশাগত মানদণ্ডের ভিত্তিতে।",
+                        applicationProcess: "1. PMJAY ওয়েবসাইটে যোগ্যতা পরীক্ষা করুন\n2. একটি প্যানেলভুক্ত হাসপাতালে যান\n3. আপনার আয়ুষ্মান কার্ড বা আধার কার্ড উপস্থাপন করুন\n4. নগদবিহীন চিকিৎসা পান\n5. কোনো চার্জ দিতে হবে না",
+                        contact: "আয়ুষ্মান ভারত হেল্পলাইন: 14555\nইমেল: support@pmjay.gov.in"
+                    },
+                    ta: {
+                        overview: "ஆயுஷ்மான் பாரத் பிரதம மந்திரி ஜன ஆரோக்கிய யோஜனா (AB-PMJAY) என்பது உலகின் மிகப்பெரிய சுகாதார காப்பீடு/உத்தரவாத திட்டமாகும், இது அரசாங்கத்தால் முழுமையாக நிதியளிக்கப்படுகிறது. இது இரண்டாம் நிலை மற்றும் மூன்றாம் நிலை பராமரிப்பு மருத்துவமனை அனுமதிக்கான ஒரு குடும்பத்திற்கு ஆண்டுக்கு ₹5 லட்சம் கவரேஜ் வழங்குகிறது.",
+                        eligibilityDetails: "இந்த திட்டம் ஏழை, பின்தங்கிய கிராமப்புற குடும்பங்கள் மற்றும் நகர்ப்புற தொழிலாளர்களின் குடும்பங்களின் அடையாளம் காணப்பட்ட தொழில் வகைகளை நோக்கமாகக் கொண்டுள்ளது. சமூக-பொருளாதார சாதி மக்கள் தொகை கணக்கெடுப்பு 2011 (SECC 2011) இன் பின்தங்கிய மற்றும் தொழில் தரநிலைகளின் அடிப்படையில் பயனாளிகள் அடையாளம் காணப்படுகிறார்கள்.",
+                        applicationProcess: "1. PMJAY வலைத்தளத்தில் தகுதியை சரிபார்க்கவும்\n2. பட்டியலிடப்பட்ட மருத்துவமனை ஒன்றைப் பார்வையிடவும்\n3. உங்கள் ஆயுஷ்மான் அட்டை அல்லது ஆதார் அட்டையை வழங்கவும்\n4. பணமில்லா சிகிச்சை பெறவும்\n5. எந்தவொரு கட்டணத்தையும் செலுத்த தேவையில்லை",
+                        contact: "ஆயுஷ்மான் பாரத் உதவி எண்: 14555\nமின்னஞ்சல்: support@pmjay.gov.in"
+                    }
                 }
             },
             {
@@ -1145,6 +1267,32 @@
                     hi: "पेट्रोलियम मंत्रालय",
                     bn: "পেট্রোলিয়াম মন্ত্রণালয়",
                     ta: "பெட்ரோலிய அமைச்சகம்"
+                },
+                details: {
+                    en: {
+                        overview: "Pradhan Mantri Ujjwala Yojana (PMUY) aims to safeguard the health of women & children by providing them with clean cooking fuel (LPG) so that they don't have to compromise their health in smoky kitchens or wander in unsafe areas collecting firewood.",
+                        eligibilityDetails: "The scheme is available to adult women of BPL families. The identification of eligible BPL families is done through Socio-Economic Caste Census (SECC) data. Priority is given to SC/ST households, beneficiaries of Pradhan Mantri Awas Yojana, Antyodaya Anna Yojana, forest dwellers, etc.",
+                        applicationProcess: "1. Visit nearest LPG distributor with required documents\n2. Fill the application form\n3. Submit documents for verification\n4. Receive LPG connection kit\n5. Get first refill and stove",
+                        contact: "Ujjwala Helpline: 1800-266-6696\nEmail: feedback@pmuy.gov.in"
+                    },
+                    hi: {
+                        overview: "प्रधानमंत्री उज्ज्वला योजना (पीएमयूवाई) का उद्देश्य महिलाओं और बच्चों के स्वास्थ्य की रक्षा करना है जिससे उन्हें स्वच्छ खाना पकाने का ईंधन (एलपीजी) प्रदान किया जा सके ताकि उन्हें धुएं भरी रसोई में अपने स्वास्थ्य से समझौता न करना पड़े या लकड़ी इकट्ठा करने के लिए असुरक्षित क्षेत्रों में भटकना न पड़े।",
+                        eligibilityDetails: "यह योजना बीपीएल परिवारों की वयस्क महिलाओं के लिए उपलब्ध है। पात्र बीपीएल परिवारों की पहचान सामाजिक-आर्थिक जाति जनगणना (एसईसीसी) डेटा के माध्यम से की जाती है। एससी/एसटी घरों, प्रधानमंत्री आवास योजना, अंत्योदय अन्न योजना, वनवासियों आदि के लाभार्थियों को प्राथमिकता दी जाती है।",
+                        applicationProcess: "1. आवश्यक दस्तावेजों के साथ निकटतम एलपीजी वितरक के पास जाएं\n2. आवेदन पत्र भरें\n3. सत्यापन के लिए दस्तावेज जमा करें\n4. एलपीजी कनेक्शन किट प्राप्त करें\n5. पहली रिफिल और स्टोव प्राप्त करें",
+                        contact: "उज्ज्वला हेल्पलाइन: 1800-266-6696\nईमेल: feedback@pmuy.gov.in"
+                    },
+                    bn: {
+                        overview: "প্রধানমন্ত্রী উজ্জ্বলা যোজনা (PMUY) এর লক্ষ্য হল মহিলা ও শিশুদের স্বাস্থ্য রক্ষা করা তাদের পরিষ্কার রান্নার জ্বালানি (এলপি��ি) প্রদান করে যাতে তাদের ধোঁয়ায় ভরা রান্নাঘরে তাদের স্বাস্থ্যের সাথে আপোস করতে না হয় বা জ্বালানির কাঠ সংগ্রহ করতে অনিরাপদ এলাকায় ঘুরে বেড়াতে না হয়।",
+                        eligibilityDetails: "এই প্রকল্পটি BPL পরিবারের প্রাপ্তবয়স্ক মহিলাদের জন্য উপলব্ধ। যোগ্য BPL পরিবারগুলির সনাক্তকরণ Socio-Economic Caste Census (SECC) ডেটার মাধ্যমে করা হয়। SC/ST পরিবার, প্রধানমন্ত্রী আবাস যোজনা, অন্ত্যোদয় অন্ন যোজনা, বনবাসী ইত্যাদির সুবিধাভোগীদের অগ্রাধিকার দেওয়া হয়।",
+                        applicationProcess: "1. প্রয়োজনীয় নথি সহ নিকটতম এলপিজি ডিস্ট্রিবিউটরের কাছে যান\n2. আবেদন ফর্ম পূরণ করুন\n3. যাচাইয়ের জন্য নথি জমা দিন\n4. এলপিজি সংযোগ কিট পান\n5. প্রথম রিফিল এবং স্টোভ পান",
+                        contact: "উজ্জ্বলা হেল্পলাইন: 1800-266-6696\nইমেল: feedback@pmuy.gov.in"
+                    },
+                    ta: {
+                        overview: "பிரதம மந்திரி உஜ்வாலா யோஜனா (PMUY) என்பது பெண்கள் மற்றும் குழந்தைகளின் ஆரோக்கியத்தைப் பாதுகாப்பதை நோக்கமாகக் கொண்டுள்ளது, இதன் மூலம் அவர்களுக்கு சுத்தமான சமையல் எரிபொருள் (எல்பிஜி) வழங்கப்படுகிறது, இதனால் அவர்கள் புகை நிறைந்த சமையலறைகளில் தங்கள் ஆரோக்கியத்தை சமரசம் செய்ய வேண்டியதில்லை அல்லது விறகு சேகரிக்கும் போது பாதுகாப்பற்ற பகுதிகளில் அலைகிறார்கள்.",
+                        eligibilityDetails: "இந்த திட்டம் BPL குடும்பங்களின் பெரியவர்களான பெண்களுக்கு கிடைக்கிறது. தகுதியான BPL குடும்பங்களை அடையாளம் காண்பது Socio-Economic Caste Census (SECC) தரவு மூலம் செய்யப்படுகிறது. SC/ST குடும்பங்கள், பிரதம மந்திரி ஆவாஸ் யோஜனா, அந்தியோதயா அன்ன யோஜனா, வனவாசிகள் போன்றவர்களுக்கு முன்னுரிமை வழங்கப்படுகிறது.",
+                        applicationProcess: "1. தேவையான ஆவணங்களுடன் அருகிலுள்ள எல்பிஜி விநியோகஸ்தரைப் பார்வையிடவும்\n2. விண்ணப்ப படிவத்தை நிரப்பவும்\n3. சரிபார்ப்புக்கான ஆவணங்களை சமர்ப்பிக்கவும்\n4. எல்பிஜி இணைப்பு கிட் பெறவும்\n5. முதல் நிரப்புதல் மற்றும் அடுப்பு பெறவும்",
+                        contact: "உஜ்வாலா உதவி எண்: 1800-266-6696\nமின்னஞ்சல்: feedback@pmuy.gov.in"
+                    }
                 }
             },
             {
@@ -1226,6 +1374,32 @@
                     hi: "पश्चिम बंगाल सरकार",
                     bn: "পশ্চিমবঙ্গ সরকার",
                     ta: "மேற்கு வங்காள அரசு"
+                },
+                details: {
+                    en: {
+                        overview: "Kanyashree Prakalpa is a conditional cash transfer scheme aimed at improving the status and well-being of girl children in West Bengal by incentivizing schooling of teenage girls and delaying their marriages until at least the age of 18.",
+                        eligibilityDetails: "The scheme has two components: 1) Annual scholarship of ₹1,000 for girls aged 13-18 years enrolled in classes VIII-XII in government recognized schools/colleges. 2) One-time grant of ₹25,000 for girls at age 18 if enrolled in an educational institution or in vocational/technical training.",
+                        applicationProcess: "1. Register on Kanyashree portal\n2. Fill application form with school/college details\n3. Submit form through school/institution\n4. Verification by authorities\n5. Direct benefit transfer to bank account",
+                        contact: "Kanyashree Helpline: 1800-345-3382\nEmail: kanyashreeprakalpa@gmail.com"
+                    },
+                    hi: {
+                        overview: "कन्याश्री प्रकल्पा एक सशर्त नकद हस्तांतरण योजना है जिसका उद्देश्य किशोर लड़कियों की स्कूली शिक्षा को प्रोत्साहित करके और उनकी शादी को कम से कम 18 वर्ष की आयु तक टालकर पश्चिम बंगाल में लड़कियों की स्थिति और कल्याण में सुधार करना है।",
+                        eligibilityDetails: "इस योजना में दो घटक हैं: 1) सरकार द्वारा मान्यता प्राप्त स्कूलों/कॉलेजों में कक्षा VIII-XII में नामांकित 13-18 वर्ष की लड़कियों के लिए ₹1,000 की वार्षिक छात्रवृत्ति। 2) 18 वर्ष की आयु में लड़कियों के लिए ₹25,000 का एकमुश्त अनुदान यदि वे किसी शैक्षणिक संस्थान या व्यावसायिक/तकनीकी प्रशिक्षण में नामांकित हैं।",
+                        applicationProcess: "1. कन्याश्री पोर्टल पर पंजीकरण करें\n2. स्कूल/कॉलेज के विवरण के साथ आवेदन पत्र भरें\n3. स्कूल/संस्थान के माध्यम से फॉर्म जमा करें\n4. अधिकारियों द्वारा सत्यापन\n5. बैंक खाते में सीधा लाभ हस्तांतरण",
+                        contact: "कन्याश्री हेल्पलाइन: 1800-345-3382\nईमेल: kanyashreeprakalpa@gmail.com"
+                    },
+                    bn: {
+                        overview: "কন্যাশ্রী প্রকল্প হল একটি শর্তসাপেক্ষ নগদ হস্তান্তর প্রকল্প যার লক্ষ্য কিশোরী মেয়েদের স্কুলে পড়াশোনাকে উৎসাহিত করে এবং তাদের বিয়ে কমপক্ষে 18 বছর বয়স পর্যন্ত বিলম্বিত করে পশ্চিমবঙ্গে মেয়ে শিশুদের অবস্থা ও কল্যাণ উন্নত করা।",
+                        eligibilityDetails: "প্রকল্পটির দুটি উপাদান রয়েছে: 1) সরকারি স্বীকৃত স্কুল/কলেজে VIII-XII শ্রেণীতে নথিভুক্ত 13-18 বছর বয়সী মেয়েদের জন্য ₹1,000 বার্ষিক বৃত্তি। 2) 18 বছর বয়সে মেয়েদের জন্য ₹25,000 এককালীন অনুদান যদি তারা কোনো শিক্ষাপ্রতিষ্ঠানে বা বৃত্তিমূলক/প্রযুক্তিগত প্রশিক্ষণে নথিভুক্ত থাকে।",
+                        applicationProcess: "1. কন্যাশ্রী পোর্টালে নিবন্ধন করুন\n2. স্কুল/কলেজের বিবরণ সহ আবেদন ফর্ম পূরণ করুন\n3. স্কুল/প্রতিষ্ঠানের মাধ্যমে ফর্ম জমা দিন\n4. কর্তৃপক্ষ দ্বারা যাচাই\n5. ব্যাংক অ্যাকাউন্টে সরাসরি সুবিধা স্থানান্তর",
+                        contact: "কন্যাশ্রী হেল্পলাইন: 1800-345-3382\nইমেল: kanyashreeprakalpa@gmail.com"
+                    },
+                    ta: {
+                        overview: "கன்யாஸ்ரீ பிரகல்பா என்பது ஒரு நிபந்தனை நிதி பரிமாற்ற திட்டமாகும், இது இளம் பெண்களின் பள்ளிப்படிப்பை ஊக்குவிப்பதன் மூலமும், அவர்களின் திருமணத்தை குறைந்தது 18 வயது வரை தாமதப்படுத்துவதன் மூலமும் மேற்கு வங்காளத்தில் பெண் குழந்தைகளின் நிலை மற்றும் நலனை மேம்படுத்துவதை நோக்கமாகக் கொண்டுள்ளது.",
+                        eligibilityDetails: "இந்த திட்டத்தில் இரண்டு கூறுகள் உள்ளன: 1) அரசாங்கம் அங்கீகரிக்கப்பட்ட பள்ளிகள்/கல்லூரிகளில் VIII-XII வகுப்புகளில் பதிவு செய்யப்பட்ட 13-18 வயது பெண்களுக்கு ₹1,000 வருடாந்திர உதவித்தொகை. 2) 18 வயதில் பெண்களுக்கு ₹25,000 ஒரு முறை மானியம், அவர்கள் ஒரு கல்வி நிறுவனத்தில் அல்லது தொழில்/தொழில்நுட்ப பயிற்சியில் பதிவு செய்தால்.",
+                        applicationProcess: "1. கன்யாஸ்ரீ போர்ட்டலில் பதிவு செய்யவும்\n2. பள்ளி/கல்லூரி விவரங்களுடன் விண்ணப்பப் படிவத்தை நிரப்பவும்\n3. பள்ளி/நிறுவனம் மூலம் படிவத்தை சமர்ப்பிக்கவும்\n4. அதிகாரிகளால் சரிபார்ப்பு\n5. வங்கிக் கணக்கில் நேரடி நன்மை பரிமாற்றம்",
+                        contact: "கன்யாஸ்ரீ உதவி எண்: 1800-345-3382\nமின்னஞ்சல்: kanyashreeprakalpa@gmail.com"
+                    }
                 }
             }
         ];
@@ -1551,7 +1725,7 @@
                                 <span>${translations[currentLanguage].applyNow || 'Apply Now'}</span>
                                 <i class="fas fa-external-link-alt ml-2"></i>
                             </a>
-                            <button class="btn-secondary font-medium py-2 px-4 rounded-lg transition flex items-center">
+                            <button onclick="toggleSchemeDetails('${scheme.id}')" class="btn-secondary font-medium py-2 px-4 rounded-lg transition flex items-center">
                                 <span>${translations[currentLanguage].viewDetails || 'View Details'}</span>
                                 <i class="fas fa-chevron-down ml-2"></i>
                             </button>
@@ -1565,10 +1739,62 @@
                             ${scheme.ministry[currentLanguage]}
                         </div>
                     </div>
+                    <div id="details-${scheme.id}" class="scheme-details">
+                        <div class="scheme-details-content">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                        <i class="fas fa-info-circle mr-2 text-blue-600"></i>
+                                        <span>Overview</span>
+                                    </h4>
+                                    <p class="text-gray-600">${scheme.details[currentLanguage].overview}</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                        <i class="fas fa-check-circle mr-2 text-blue-600"></i>
+                                        <span>Eligibility Details</span>
+                                    </h4>
+                                    <p class="text-gray-600">${scheme.details[currentLanguage].eligibilityDetails}</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                        <i class="fas fa-list-ol mr-2 text-blue-600"></i>
+                                        <span>Application Process</span>
+                                    </h4>
+                                    <p class="text-gray-600 whitespace-pre-line">${scheme.details[currentLanguage].applicationProcess}</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                        <i class="fas fa-phone-alt mr-2 text-blue-600"></i>
+                                        <span>Contact Information</span>
+                                    </h4>
+                                    <p class="text-gray-600 whitespace-pre-line">${scheme.details[currentLanguage].contact}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 `;
                 
                 container.appendChild(card);
             });
+        }
+
+        // Toggle scheme details visibility
+        function toggleSchemeDetails(schemeId) {
+            const detailsElement = document.getElementById(`details-${schemeId}`);
+            const button = document.querySelector(`[onclick="toggleSchemeDetails('${schemeId}')"]`);
+            
+            detailsElement.classList.toggle('active');
+            
+            if (detailsElement.classList.contains('active')) {
+                // Change button text and icon
+                const viewDetailsText = translations[currentLanguage].viewDetails || 'View Details';
+                button.innerHTML = `<span>Hide Details</span><i class="fas fa-chevron-up ml-2"></i>`;
+            } else {
+                // Change button text and icon back
+                const viewDetailsText = translations[currentLanguage].viewDetails || 'View Details';
+                button.innerHTML = `<span>${viewDetailsText}</span><i class="fas fa-chevron-down ml-2"></i>`;
+            }
         }
 
         // Get icon for scheme tag
@@ -1695,6 +1921,7 @@
 
         // Print results
         function printResults() {
+            // Open print dialog for the whole page
             window.print();
         }
 
